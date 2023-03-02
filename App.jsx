@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
-import { useFonts } from 'expo-font';
+import { StyleSheet, View, StatusBar, Platform } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 
-import AppNavigator from './AppNavigator';
+import { useFonts } from 'expo-font';
 
+import Constants from 'expo-constants';
+
+import AppNavigator from './AppNavigator';
 import BlothTheme from 'styles/theme';
 
 const customFonts = {
@@ -43,8 +45,57 @@ const customFonts = {
     'SourceSerifPro-SemiBoldItalic': require('./assets/fonts/source_serif_pro/SourceSerifPro-SemiBoldItalic.ttf')
 }
 
+/**
+ * @typedef CustomeStatusBarProps
+ * @property {string} backgroundColor Màu cho background của status bar.
+ * @property {'light' | 'dark'} theme Theme của app.
+ * @property {'ios' | 'android'} platform Nền tảng mà app đang chạy.
+ */
+
+/**
+ * Dùng để custom Background cho status bar.
+ * @param {CustomeStatusBarProps} props Props của component
+ * @return `View` chứa `StatusBar` ở trong.
+ */
+const CustomStatusBar = (
+  {
+    backgroundColor,
+    theme = "light",
+    platform
+  }
+) => {
+   return (
+    platform === 'ios'
+    ? (
+      <View
+        style={{
+          width: '100%',
+          height: Constants.statusBarHeight,
+          position: 'absolute',
+          zIndex: 1000,
+          backgroundColor
+        }}
+      >
+        <StatusBar
+          animated={true}
+          backgroundColor
+          barStyle={theme === "light" ? "dark-content" : "light-content"}
+        />
+      </View>
+    )
+    : (
+      <StatusBar
+        animated={true}
+        backgroundColor={backgroundColor}
+        barStyle={theme === "light" ? "dark-content" : "light-content"}
+      />
+    )
+  )
+}
+
 export default function App() {
   const [fontsLoaded] = useFonts(customFonts);
+  const theme = "light";
 
   console.log("Font loaded: ", fontsLoaded);
 
@@ -53,13 +104,14 @@ export default function App() {
   }
 
   return (
-    <PaperProvider theme={BlothTheme.light}>
+    <PaperProvider theme={BlothTheme[theme]}>
       <View style={styles.container}>
-        <StatusBar
-          style="auto"
+        <CustomStatusBar
+          theme={theme}
+          platform={Platform.OS}
+          backgroundColor={BlothTheme[theme].colors.background}
         />
-        
-        
+
         <NavigationContainer>
           <AppNavigator />
         </NavigationContainer>
