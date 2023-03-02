@@ -19,7 +19,6 @@ import app_c from 'styles/colors';
  * @property {object}  toScreen - Một object chứa thông tin của route khác.
  * @property {string}  toScreen.screenName - Tên của screen muốn navigate tới.
  * @property {object}  toScreen.params - Params muốn truyền cho screen.
- * @property {StyleProp<TextStyle>} [style={}] - Style cho component.
  */
 
 /**
@@ -40,7 +39,6 @@ const AppText = ({
   color,
   hyperLink,
   toScreen = { screenName: "", params: {} },
-  style = {},
   ...props
 }) => {
   let textStyle = React.useMemo(() => (
@@ -48,16 +46,16 @@ const AppText = ({
       ...app_typo.fonts[fontFamily][fontStyle][weight][font],
       color: color,
       fontStyle: fontStyle,
-      ...style
+      ...props.style
     }
-  ), [fontStyle, weight, font, color, style]);
+  ), [fontStyle, weight, font, color, props.style]);
 
   // Sẽ thêm hàm validate url sau, tạm thời dùng điệu kiện hyperLink !== ''
   if(hyperLink && hyperLink !== '') {
     return (
       <Text
         {...props}
-        style={{...app_typo.fonts[fontFamily][fontStyle][weight][font], color: color, ...style}}
+        style={{...app_typo.fonts[fontFamily][fontStyle][weight][font], color: color, ...props.style}}
         onPress={() => Linking.openURL(hyperLink)}
       >{children}
       </Text>
@@ -80,7 +78,6 @@ const AppText = ({
     <Text
       {...props}
       style={textStyle}
-      numberOfLines={numberOfLines}
     >{children}
     </Text>
   )
