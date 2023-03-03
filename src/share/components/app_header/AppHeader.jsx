@@ -51,7 +51,7 @@ const AppHeader = ({
   const canSetLeftPart = typeof setLeftPart === 'function';
   const canSetCenterPart = typeof setCenterPart === 'function';
   const canSetRightPart = typeof setRightPart === 'function';
-  const canSetBackButton = navigation.canGoBack() && !options.isTopScreen;
+  const canSetBackButton = navigation.canGoBack();
   const title = (
     options.title !== "" && options.title
     ? options.title
@@ -69,6 +69,7 @@ const AppHeader = ({
     ...(transparent ?  { backgroundColor: `rgba(${app_c.RGB.primary}, 0)` } : {} )
   }
 
+  // console.log(`${title} can go back? ${navigation.canGoBack()}`);
 
   return (
     <View style={headerStyle}>

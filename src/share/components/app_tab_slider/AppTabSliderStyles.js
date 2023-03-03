@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 
-import { app_sp, app_c, app_dms } from "globals/styles";
+import app_sp from "styles/spacing";
+import app_c from "styles/colors";
 
 const styles = StyleSheet.create({
   slider_container: {
@@ -16,13 +17,12 @@ const styles = StyleSheet.create({
 
   line_index: {
     width: '100%',
-    height: 1,
-    backgroundColor: app_c.HEX.fourth
+    height: 1
   },
 
   slide_container: {
     flex: 1,
-    flexGrow: 1
+    width: '100%'
   }
 });
 
