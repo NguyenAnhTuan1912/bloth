@@ -1,6 +1,7 @@
 import { Text, Linking, StyleProp, TextStyle, TextProps } from 'react-native'
 import React from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, Link } from '@react-navigation/native';
+import { useTheme } from 'react-native-paper';
 
 import app_typo from 'styles/typography';
 import app_c from 'styles/colors';
@@ -41,21 +42,35 @@ const AppText = ({
   toScreen = { screenName: "", params: {} },
   ...props
 }) => {
+  let stylePropIsArray = props.style instanceof Array;
+  
   let textStyle = React.useMemo(() => (
     {
       ...app_typo.fonts[fontFamily][fontStyle][weight][font],
-      color: color,
-      fontStyle: fontStyle,
-      ...props.style
+      color: color
     }
-  ), [fontStyle, weight, font, color, props.style]);
+  ), [fontStyle, weight, font, color]);
+
+  if(stylePropIsArray) {
+    let copyOfStyleProp = props.style.concat();
+    copyOfStyleProp.unshift(textStyle);
+    props.style = copyOfStyleProp;
+  } else {
+    let copyOfStyleProp = {...props.style};
+    props.style = Object.assign({}, textStyle , copyOfStyleProp);
+  }
 
   // Sẽ thêm hàm validate url sau, tạm thời dùng điệu kiện hyperLink !== ''
   if(hyperLink && hyperLink !== '') {
+    const theme = useTheme();
     return (
       <Text
         {...props}
-        style={{...app_typo.fonts[fontFamily][fontStyle][weight][font], color: color, ...props.style}}
+        style={
+          stylePropIsArray
+            ? [...props.style, { color: theme.colors.primary }]
+            : Object.assign({}, props.style, { color: theme.colors.primary })
+        }
         onPress={() => Linking.openURL(hyperLink)}
       >{children}
       </Text>
@@ -63,21 +78,18 @@ const AppText = ({
   }
 
   if(toScreen.screenName !== "") {
-    const navigation = useNavigation();
     return (
-      <Text
+      <Link
+        to={{screen: toScreen.screenName, params: toScreen.params}}
         {...props}
-        style={textStyle}
-        onPress={() => navigation.navigate(toScreen.screenName)}
       >{children}
-      </Text>
+      </Link>
     );
   }
 
   return (
     <Text
       {...props}
-      style={textStyle}
     >{children}
     </Text>
   )

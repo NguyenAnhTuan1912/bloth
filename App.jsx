@@ -8,7 +8,7 @@ import { useFonts } from 'expo-font';
 
 import Constants from 'expo-constants';
 
-import AppNavigator from './AppNavigator';
+import AppNavigator from 'AppNavigator';
 import BlothTheme from 'styles/theme';
 
 const customFonts = {

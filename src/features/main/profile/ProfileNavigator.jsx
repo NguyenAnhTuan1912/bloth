@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import ProfileScreen from './screens/profile/ProfileScreen';
@@ -11,28 +12,30 @@ const ProfileStack = createNativeStackNavigator();
 
 export default function ProfileNavigator() {
   return (
-    <ProfileStack.Navigator
-      initialRouteName='ProfileScreen'
-      screenOptions={{
-        header: props => <AppHeader {...props} />
-      }}
-    >
-      {/* Profile screen */}
-      <ProfileStack.Screen
-        name='ProfileScreen'
-        options={{
-          isTopScreen: true
+    <NavigationContainer independent>
+      <ProfileStack.Navigator
+        initialRouteName='ProfileScreen'
+        screenOptions={{
+          header: props => <AppHeader {...props} />
         }}
       >
-        { props => <ProfileScreen {...props} />}
-      </ProfileStack.Screen>
+        {/* Profile screen */}
+        <ProfileStack.Screen
+          name='ProfileScreen'
+          options={{
+            isTopScreen: true
+          }}
+        >
+          { props => <ProfileScreen {...props} />}
+        </ProfileStack.Screen>
 
-      {/* Settings screen */}
-      <ProfileStack.Screen
-        name='SettingsScreen'
-      >
-        { props => <SettingsScreen {...props} />}
-      </ProfileStack.Screen>
-    </ProfileStack.Navigator>
+        {/* Settings screen */}
+        <ProfileStack.Screen
+          name='SettingsScreen'
+        >
+          { props => <SettingsScreen {...props} />}
+        </ProfileStack.Screen>
+      </ProfileStack.Navigator>
+    </NavigationContainer>
   )
 }
