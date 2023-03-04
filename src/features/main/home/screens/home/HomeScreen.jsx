@@ -23,7 +23,7 @@ export default function HomeScreen({
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <AppText color={theme.colors.onBackground}>Home screen</AppText>
-      <Button onPress={() => appNavigation.navigate("Authentication")}>
+      <Button onPress={() => navigation.navigate("SigninScreen")}>
         <AppText>Log out</AppText>
       </Button>
     </SafeAreaView>

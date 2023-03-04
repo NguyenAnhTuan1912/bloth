@@ -21,7 +21,7 @@ export default function SigninScreen({
   return (
     <View style={styles.container}>
       <AppText>Sign in screen</AppText>
-      <Button onPress={() => appNavigation.navigate("Main")}>Continue as Guest</Button>
+      <Button onPress={() => navigation.navigate("HomeScreen")}>Continue as Guest</Button>
       <Button onPress={() => navigation.navigate("SignupScreen")}>Go to Sign in</Button>
     </View>
   )
