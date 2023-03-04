@@ -23,7 +23,6 @@ export default function AuthenticationNavigator({
   route,
   navigation
 }) {
-
   return (
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer independent>

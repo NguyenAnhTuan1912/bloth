@@ -12,30 +12,28 @@ const BlogsStack = createNativeStackNavigator();
 
 export default function BlogsNavigator() {
   return (
-    <NavigationContainer independent>
-      <BlogsStack.Navigator
-        initialRouteName='BlogsScreen'
-        screenOptions={{
-          header: props => <AppHeader {...props} />
+    <BlogsStack.Navigator
+      initialRouteName='BlogsScreen'
+      screenOptions={{
+        header: props => <AppHeader {...props} />
+      }}
+    >
+      {/* Blogs screen */}
+      <BlogsStack.Screen
+        name='BlogsScreen'
+        options={{
+          isTopScreen: true
         }}
       >
-        {/* Blogs screen */}
-        <BlogsStack.Screen
-          name='BlogsScreen'
-          options={{
-            isTopScreen: true
-          }}
-        >
-          { props => <BlogsScreen {...props} />}
-        </BlogsStack.Screen>
+        { props => <BlogsScreen {...props} />}
+      </BlogsStack.Screen>
 
-        {/* Blog detail screen */}
-        <BlogsStack.Screen
-          name='BlogDetailScreen'
-        >
-          { props => <BlogDetailScreen {...props} />}
-        </BlogsStack.Screen>
-      </BlogsStack.Navigator>
-    </NavigationContainer>
+      {/* Blog detail screen */}
+      <BlogsStack.Screen
+        name='BlogDetailScreen'
+      >
+        { props => <BlogDetailScreen {...props} />}
+      </BlogsStack.Screen>
+    </BlogsStack.Navigator>
   )
 }

@@ -12,30 +12,28 @@ const ProfileStack = createNativeStackNavigator();
 
 export default function ProfileNavigator() {
   return (
-    <NavigationContainer independent>
-      <ProfileStack.Navigator
-        initialRouteName='ProfileScreen'
-        screenOptions={{
-          header: props => <AppHeader {...props} />
+    <ProfileStack.Navigator
+      initialRouteName='ProfileScreen'
+      screenOptions={{
+        header: props => <AppHeader {...props} />
+      }}
+    >
+      {/* Profile screen */}
+      <ProfileStack.Screen
+        name='ProfileScreen'
+        options={{
+          isTopScreen: true
         }}
       >
-        {/* Profile screen */}
-        <ProfileStack.Screen
-          name='ProfileScreen'
-          options={{
-            isTopScreen: true
-          }}
-        >
-          { props => <ProfileScreen {...props} />}
-        </ProfileStack.Screen>
+        { props => <ProfileScreen {...props} />}
+      </ProfileStack.Screen>
 
-        {/* Settings screen */}
-        <ProfileStack.Screen
-          name='SettingsScreen'
-        >
-          { props => <SettingsScreen {...props} />}
-        </ProfileStack.Screen>
-      </ProfileStack.Navigator>
-    </NavigationContainer>
+      {/* Settings screen */}
+      <ProfileStack.Screen
+        name='SettingsScreen'
+      >
+        { props => <SettingsScreen {...props} />}
+      </ProfileStack.Screen>
+    </ProfileStack.Navigator>
   )
 }

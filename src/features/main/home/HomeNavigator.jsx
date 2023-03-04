@@ -24,12 +24,10 @@ export default function HomeNavigator({
   appNavigation
 }) {
   return (
-    <NavigationContainer independent>
-      <HomeStack.Navigator initialRouteName='HomeScreen' screenOptions={{ header: props => <AppHeader {...props} />}}>
-        <HomeStack.Screen name="HomeScreen" options={{ title: 'Home' }}>
-          {props => <HomeScreen {...props} appNavigation={appNavigation} />}
-        </HomeStack.Screen>
-      </HomeStack.Navigator>
-    </NavigationContainer>
+    <HomeStack.Navigator initialRouteName='HomeScreen' screenOptions={{ header: props => <AppHeader {...props} />}}>
+      <HomeStack.Screen name="HomeScreen" options={{ title: 'Home' }}>
+        {props => <HomeScreen {...props} appNavigation={appNavigation} />}
+      </HomeStack.Screen>
+    </HomeStack.Navigator>
   )
 }
