@@ -6,7 +6,7 @@ import { Button, useTheme } from 'react-native-paper'
 
 import AppText from 'share/components/app_text/AppText'
 
-import styles from '../../ArchiveScreenStyles'
+import styles from './ArchiveScreenStyles'
 
 /**
  * @typedef NavigationProps

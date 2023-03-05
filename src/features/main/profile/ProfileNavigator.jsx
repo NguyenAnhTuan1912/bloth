@@ -15,7 +15,8 @@ export default function ProfileNavigator() {
     <ProfileStack.Navigator
       initialRouteName='ProfileScreen'
       screenOptions={{
-        header: props => <AppHeader {...props} />
+        header: props => <AppHeader {...props} />,
+        // headerShown: false
       }}
     >
       {/* Profile screen */}

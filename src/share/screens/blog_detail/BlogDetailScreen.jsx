@@ -1,6 +1,5 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
-import { RouteProp, ParamListBase, NavigationProp } from '@react-navigation/native'
 
 import { Button, useTheme } from 'react-native-paper'
 
@@ -8,14 +7,10 @@ import AppText from 'share/components/app_text/AppText'
 
 import styles from './BlogDetailScreenStyles'
 
-/**
- * @typedef NavigationProps
- * @property {RouteProp<ParamListBase, string>} route
- * @property {NavigationProp<T>} navigation
- */
+import { NavigationProps } from 'share/types/index.d'
 
 /**
- * Đây là screen Sign in
+ * Blog detail screen dùng để xem chi tiết một blog nào đó. Đây là chức năng con mà mọi chức năng chính trong app đều có thể dùng.
  * @param {NavigationProps} props - Props của component.
  * @returns 
  */

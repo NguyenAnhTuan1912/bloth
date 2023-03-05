@@ -23,8 +23,14 @@ export default function ArchiveNavigator({
   appNavigation
 }) {
   return (
-    <ArchiveStack.Navigator initialRouteName='HomeScreen' screenOptions={{ header: props => <AppHeader {...props} />}}>
-      <ArchiveStack.Screen name="HomeScreen" options={{ title: 'Archive' }}>
+    <ArchiveStack.Navigator
+      initialRouteName='ArchiveScreen'
+      screenOptions={{
+        header: props => <AppHeader {...props} />,
+        // headerShown: false
+      }}
+    >
+      <ArchiveStack.Screen name="ArchiveScreen" options={{ title: 'Archive' }}>
         {props => <ArchiveScreen {...props} appNavigation={appNavigation} />}
       </ArchiveStack.Screen>
     </ArchiveStack.Navigator>

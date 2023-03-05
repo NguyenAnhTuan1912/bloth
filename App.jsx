@@ -3,6 +3,7 @@ import { StyleSheet, View, StatusBar, Platform } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
+import { enableScreens } from 'react-native-screens';
 
 import { useFonts } from 'expo-font';
 
@@ -92,6 +93,8 @@ const CustomStatusBar = (
     )
   )
 }
+
+enableScreens(true);
 
 export default function App() {
   const [fontsLoaded] = useFonts(customFonts);

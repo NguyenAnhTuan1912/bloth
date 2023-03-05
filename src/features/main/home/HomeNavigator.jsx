@@ -7,8 +7,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import HomeScreen from './screens/home/HomeScreen';
 import AppHeader from 'share/components/app_header/AppHeader';
+import AppText from 'share/components/app_text/AppText';
 
 import { NavigationProps, ScreenProps } from 'share/types/index.d';
+import BlogDetailScreen from 'share/screens/blog_detail/BlogDetailScreen';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -23,11 +25,17 @@ export default function HomeNavigator({
   navigation,
   appNavigation
 }) {
+
   return (
-    <HomeStack.Navigator initialRouteName='HomeScreen' screenOptions={{ header: props => <AppHeader {...props} />}}>
-      <HomeStack.Screen name="HomeScreen" options={{ title: 'Home' }}>
-        {props => <HomeScreen {...props} appNavigation={appNavigation} />}
-      </HomeStack.Screen>
-    </HomeStack.Navigator>
+      <HomeStack.Navigator
+        initialRouteName='HomeScreen'
+        screenOptions={{
+          header: props => <AppHeader {...props} />,
+          // headerShown: false
+        }}
+      >
+        <HomeStack.Screen name="HomeScreen" options={{ title: 'Home' }} component={HomeScreen} />
+        <HomeStack.Screen name="BlogDetailScreen" options={{ title: 'BlogDetail' }} component={BlogDetailScreen} />
+      </HomeStack.Navigator>
   )
 }

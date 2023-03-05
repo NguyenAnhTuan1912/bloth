@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import BlogsScreen from './screens/blogs/BlogsScreen';
-import BlogDetailScreen from './screens/blog_detail/BlogDetailScreen';
+import BlogDetailScreen from 'share/screens/blog_detail/BlogDetailScreen';
 import AppHeader from 'share/components/app_header/AppHeader';
 
 const BlogsStack = createNativeStackNavigator();
@@ -15,7 +15,8 @@ export default function BlogsNavigator() {
     <BlogsStack.Navigator
       initialRouteName='BlogsScreen'
       screenOptions={{
-        header: props => <AppHeader {...props} />
+        header: props => <AppHeader {...props} />,
+        // headerShown: false
       }}
     >
       {/* Blogs screen */}
