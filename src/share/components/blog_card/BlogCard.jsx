@@ -1,7 +1,10 @@
 import styles from './BlogCardStyles'
 import { View, Image } from 'react-native';
-import AppText from '../app_text/AppText';
 import {  Avatar, IconButton, MD3Colors} from 'react-native-paper'
+
+import AppText from '../app_text/AppText';
+
+import app_sp from 'styles/spacing';
 
 function BlogCard(props) {
     return ( 
@@ -9,12 +12,12 @@ function BlogCard(props) {
           <View style = {styles.blogList}>
               <View style= {styles.blogUser}>
                 <Avatar.Image 
-                    source={{
-                    uri : props.image
-                    }}
-                    size = {18}
+                  source={{
+                  uri : props.image
+                  }}
+                  size = {18}
                 />
-                <AppText style = {styles.blogUserName}>{props.userName}</AppText>
+                <AppText font="body3" style={app_sp.ms_6}>{props.userName}</AppText>
               </View >
               <View style= {styles.blogItem}>
                 <Image 
@@ -23,30 +26,30 @@ function BlogCard(props) {
                   }}
                   style = {styles.blogImage}
                 />
-                <View style ={{ marginRight: 103}}>
-                  <AppText style= {styles.blogTitle} onPress={() => (
+                <View style={{flex: 1}}>
+                  <AppText numberOfLines={3} font="h5" onPress={() => (
                     alert('blog detail')
                   )} >{props.title}</AppText>
-                  <AppText style ={styles.blogTimeUp}>{props.time}</AppText>
+                  <AppText font="body3">{props.time}</AppText>
                 </View>
               </View>
               <View style = {styles.btnGroupBlog}>
-                    <IconButton 
-                      size={11}
+                    <IconButton
+                      size={8}
                       style= {styles.btnBlog}
                       onPress = {() => {
                         alert('chức năng 1')
                       }}
                     />
                     <IconButton 
-                      size={11}
+                      size={8}
                       style= {styles.btnBlog}
                       onPress = {() => {
                         alert('chức năng 2')
                       }}
                     />
                     <IconButton 
-                      size={11}
+                      size={8}
                       style= {styles.btnBlog}
                       onPress = {() => {
                         alert('chức năng 3')

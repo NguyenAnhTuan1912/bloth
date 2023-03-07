@@ -8,7 +8,7 @@ import { Button, useTheme, MD3Theme } from 'react-native-paper'
 import AppText from '../app_text/AppText'
 
 import styles from './AppTabSliderStyles'
-import app_dms from 'utilities/dimension'
+import app_dms from 'styles/dimension'
 
 // Để hiểu hơn về component này thì đọc bài này:
 // Link: https://docs.google.com/document/d/1S9RUWqudJ-djqsEA5zzzJU8l2HL5Z3dCQQlUaTJZNvY/edit#

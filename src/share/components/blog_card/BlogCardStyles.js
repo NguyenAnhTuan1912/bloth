@@ -1,15 +1,13 @@
 import { StyleSheet } from "react-native";
+import app_sp from "styles/spacing";
 
 const styles = StyleSheet.create ({
   blog : {
-    height: 164,
-    borderBottomWidth: 1,
-    borderColor:'rgba(38, 38, 38, 0.5)',
+    borderBottomWidth: .25
   },
   blogList : {
-    marginLeft:18,
-    marginTop: 14, 
-    paddingBottom: 12
+    ...app_sp.ph_18,
+    ...app_sp.pv_12
   },
   blogUser : {
     flexDirection: 'row',
@@ -55,8 +53,7 @@ const styles = StyleSheet.create ({
     btnGroupBlog : {
       flexDirection:'row',
       justifyContent: 'flex-end',
-      marginTop:6,
-      marginRight: 18
+      ...app_sp.mt_6
     },
     btnBlog : {
       backgroundColor:'#FFFFFF',

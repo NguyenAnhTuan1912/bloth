@@ -34,7 +34,7 @@ export default function SigninScreen({
 
         </View>
         <View style={[app_sp.mt_22]}>
-          <Button mode="contained" onPress={() => navigation.navigate("Main")}><AppText>Sign in</AppText></Button>
+          <Button mode="contained" onPress={() => appNavigation.navigate("Main")}><AppText>Sign in</AppText></Button>
         </View>
         <View style={[app_sp.mt_12]}>
           <AppText toScreen={{ screenName: 'Main' }} color={theme.colors.primary} font="body3" weight="bolder">Continue as Guest</AppText>

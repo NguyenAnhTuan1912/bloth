@@ -32,7 +32,6 @@ import app_c from 'styles/colors';
  */
 const AppText = ({
   children,
-  numberOfLines = 0,
   fontFamily = 'Montserrat',
   fontStyle = 'normal',
   weight = 'normal',
