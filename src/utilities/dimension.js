@@ -7,6 +7,7 @@ const screenHeight =
     Platform.OS === "ios"
     ? Dimensions.get("window").height
     : require("react-native-extra-dimensions-android").get("REAL_WINDOW_HEIGHT")
+
 const app_dms = {
   screenHeight,
   screenWidth
