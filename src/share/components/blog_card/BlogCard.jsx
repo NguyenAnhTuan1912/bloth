@@ -1,7 +1,9 @@
 import styles from './BlogCardStyles'
-import { View, Image } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import AppText from '../app_text/AppText';
-import {  Avatar, IconButton, MD3Colors} from 'react-native-paper'
+import {  Avatar, IconButton} from 'react-native-paper'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+
 
 function BlogCard(props) {
     return ( 
@@ -14,7 +16,7 @@ function BlogCard(props) {
                     }}
                     size = {18}
                 />
-                <AppText style = {styles.blogUserName}>{props.userName}</AppText>
+                <AppText font='sub1' style = {styles.blogUserName}>{props.userName}</AppText>
               </View >
               <View style= {styles.blogItem}>
                 <Image 
@@ -24,34 +26,40 @@ function BlogCard(props) {
                   style = {styles.blogImage}
                 />
                 <View style ={{ marginRight: 103}}>
-                  <AppText style= {styles.blogTitle} onPress={() => (
-                    alert('blog detail')
-                  )} >{props.title}</AppText>
-                  <AppText style ={styles.blogTimeUp}>{props.time}</AppText>
+                  <Text numberOfLines={3} ellipsizeMode = 'tail'>
+                    <AppText font='h1' style= {styles.blogTitle} onPress={() => (
+                      alert('blog detail')
+                    )} >{props.title}
+                    </AppText>
+                  </Text>
+                  <AppText font='sub1' style ={styles.blogTimeUp}>{props.time}</AppText>
                 </View>
               </View>
               <View style = {styles.btnGroupBlog}>
-                    <IconButton 
-                      size={11}
-                      style= {styles.btnBlog}
-                      onPress = {() => {
-                        alert('chức năng 1')
-                      }}
-                    />
-                    <IconButton 
-                      size={11}
-                      style= {styles.btnBlog}
-                      onPress = {() => {
-                        alert('chức năng 2')
-                      }}
-                    />
-                    <IconButton 
-                      size={11}
-                      style= {styles.btnBlog}
-                      onPress = {() => {
-                        alert('chức năng 3')
-                      }}
-                    />
+              <IconButton 
+                        icon = {() => <Ionicons name="bookmark-outline" />} 
+                          size={11}
+                          style= {{borderColor: '#262626', borderWidth: 1, justifyContent: 'center', alignItems: 'center'}}
+                          onPress = {() => {
+                            alert('chức năng 1')
+                          }}
+                        />
+                        <IconButton 
+                        icon = {() => <Ionicons name = "remove-outline" />}
+                          size={11}
+                          style= {{borderColor: '#262626', borderWidth: 1, justifyContent: 'center'}}
+                          onPress = {() => {
+                            alert('chức năng 2')
+                          }}
+                        />
+                        <IconButton 
+                          icon={() => <Ionicons name="ellipsis-horizontal" />}
+                          size={11}
+                          style= {{borderColor: '#262626', borderWidth: 1, justifyContent: 'center'}}
+                          onPress = {() => {
+                            alert('chức năng 3')
+                          }}
+                        />
               </View>
           </View>
         </View >

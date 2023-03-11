@@ -7,6 +7,7 @@ import styles from './ProfileScreenStyles'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AppText from 'share/components/app_text/AppText'
 import BlogCard from 'share/components/blog_card/BlogCard'
+import ProfileNavigator from '../../ProfileNavigator'
 
 /**
  * @typedef NavigationProps
@@ -34,13 +35,13 @@ export default function ProfileScreen() {
               size= {60}
             />
             <View >
-              <AppText style = {styles.userName}>Nguyễn Anh Tuấn</AppText>
-              <AppText style ={styles.userCaption}>Software Engineer</AppText>
+              <AppText font = 'h1' style = {styles.userName}>Nguyễn Anh Tuấn</AppText>
+              <AppText font= 'sub1' style ={styles.userCaption}>Software Engineer</AppText>
             </View>
           </View>
           <View style = {styles.profileBtn}>
-            <Button mode='contained' style= {styles.statBtn} onPress = {() => alert('view Start')}>View stats</Button>
-            <Button mode = 'outlined' style= {styles.editBtn} onPress = {() => alert('edit profile')}>Edit Profile</Button>
+            <Button mode='contained' style= {styles.userBtn} onPress = {() => {} }>View stats</Button>
+            <Button mode = 'outlined' style= {styles.userBtn} onPress = {() => alert('edit profile')}>Edit Profile</Button>
             <IconButton
               icon={() => <Ionicons name="ellipsis-horizontal" />}
               size={20}
@@ -54,11 +55,11 @@ export default function ProfileScreen() {
         <View style = {styles.aboutUs}>
            <View style ={styles.listaboutUs}>
              <View >
-                <AppText style = {styles.aboutTitle}>Introduction</AppText>
-                <AppText style = {styles.aboutCaption}>Xin chào, mình là Tuấn, hiện tại mình dang là Software Engineer của Google, mình mở ra Blog này để chia sẻ cho các bạn mới kiến thức về ngành xây dựng và phát triển phần mềm</AppText>
+                <AppText font= 'h1' style = {styles.aboutTitle}>Introduction</AppText>
+                <AppText font='body1' style = {styles.aboutCaption}>Xin chào, mình là Tuấn, hiện tại mình dang là Software Engineer của Google, mình mở ra Blog này để chia sẻ cho các bạn mới kiến thức về ngành xây dựng và phát triển phần mềm</AppText>
               </View>
               <View>
-                <AppText style = {styles.aboutTitle}>Link</AppText> 
+                <AppText font= 'h1' style = {styles.aboutTitle}>Link</AppText> 
                 <View style = {styles.linkItem}>
                 <Avatar.Image 
                   source={{
@@ -86,15 +87,15 @@ export default function ProfileScreen() {
         </View>
         {/* blog */}
         <View style ={styles.myBlog}>
-            <Title style = {styles.blogHeader}>Your Blogs</Title>
+            <AppText font='h1' style = {styles.blogHeader}>Your Blogs</AppText>
             
             {/* blogCart */}
            <View style= {{borderTopWidth: 1,borderColor:'rgba(38, 38, 38, 0.5)'}}>
-            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/zAbBqX' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
-            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/zAbBqX' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
-            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/zAbBqX' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
-            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/zAbBqX' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
-            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/zAbBqX' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
+            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/uEBIm0' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
+            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/xLT9ss' title ='Essential Convepts in Funtional Programming With JavaScript.' time = 'Feb 24, 2023 - 4 min read' />
+            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/VNMliM' title ='Now four years sober, I found non-alcoholic paradise in this outer Richmound ravern.' time = 'Feb 24, 2023 - 4 min read' />
+            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/pGjD8Z' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
+            <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/rBUTNZ' title ='Now four years sober, I found non-alcoholic paradise in this outer Richmound ravern.' time = 'Feb 24, 2023 - 4 min read' />
            </View>
         </View>
       </ScrollView >

@@ -16,17 +16,13 @@ const styles = StyleSheet.create({
     marginLeft: 18
   }, 
   userName : {
-    fontFamily: 'Montserrat',
-    fontWeight: '700',
-    fontStyle: 'normal',
+    // fontFamily: 'Montserrat',
     fontSize: 24,
     color :'#262626',
     lineHeight:29
   },
   userCaption : {
-    fontFamily: 'Montserrat',
-    fontWeight: '400',
-    fontStyle: 'normal',
+    // fontFamily: 'Montserrat',
     fontSize: 12,
     color :'#262626',
     position:'absolute',
@@ -38,21 +34,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop : 24
   },
-  statBtn : {
-    fontFamily: 'Montserrat',
-    fontWeight: '500',
-    fontStyle: 'normal',
-    fontSize: 12,
-    width: 146,
-    backgroundColor : '#262626',
-    borderRadius: 8,
-    height: 41, 
-    color: '#FFFFFF'
-  }, 
-  editBtn : {
-    fontFamily: 'Montserrat',
-    fontWeight: '500',
-    fontStyle: 'normal',
+  userBtn : {
+    // fontFamily: 'Montserrat',
     fontSize: 12,
     width: 146,
     borderRadius: 8,
@@ -77,18 +60,14 @@ const styles = StyleSheet.create({
      marginRight: 18
   },
   aboutTitle  : {
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: '700',
+    // fontFamily: 'Montserrat',
     marginTop: 12,
     fontSize: 16,
     lineHeight: 20,
     marginBottom: 6
   }, 
   aboutCaption : {
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: '400',
+    // fontFamily: 'Montserrat',
     fontSize: 14,
     lineHeight: 20,
   },
@@ -108,9 +87,7 @@ const styles = StyleSheet.create({
     borderColor:'rgba(38, 38, 38, 0.5)'
   },
   blogHeader : {
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: '700',
+    // fontFamily: 'Montserrat',
     fontSize: 16,
     marginLeft: 18, 
     height: 44,
