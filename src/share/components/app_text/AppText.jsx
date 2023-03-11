@@ -3,6 +3,8 @@ import React from 'react'
 import { useNavigation, Link } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
 
+import ComponentUtility from 'utilities/component';
+
 import app_typo from 'styles/typography';
 import app_c from 'styles/colors';
 
@@ -32,18 +34,17 @@ import app_c from 'styles/colors';
  */
 const AppText = ({
   children,
-  numberOfLines = 0,
   fontFamily = 'Montserrat',
   fontStyle = 'normal',
   weight = 'normal',
-  font = 'body1',
+  font = 'body2',
   color,
   hyperLink,
   toScreen = { screenName: "", params: {} },
   ...props
 }) => {
   let stylePropIsArray = props.style instanceof Array;
-  
+
   let textStyle = React.useMemo(() => (
     {
       ...app_typo.fonts[fontFamily][fontStyle][weight][font],
@@ -60,17 +61,16 @@ const AppText = ({
     props.style = Object.assign({}, textStyle , copyOfStyleProp);
   }
 
+  let textCompleteStyle = ComponentUtility.mergeStyle(props.style, textStyle);
+
   // Sẽ thêm hàm validate url sau, tạm thời dùng điệu kiện hyperLink !== ''
   if(hyperLink && hyperLink !== '') {
     const theme = useTheme();
+    textCompleteStyle[0].color = theme.colors.primary;
     return (
       <Text
         {...props}
-        style={
-          stylePropIsArray
-            ? [...props.style, { color: theme.colors.primary }]
-            : Object.assign({}, props.style, { color: theme.colors.primary })
-        }
+        style={textCompleteStyle}
         onPress={() => Linking.openURL(hyperLink)}
       >{children}
       </Text>
@@ -80,8 +80,9 @@ const AppText = ({
   if(toScreen.screenName !== "") {
     return (
       <Link
-        to={{screen: toScreen.screenName, params: toScreen.params}}
         {...props}
+        style={textCompleteStyle}
+        to={{screen: toScreen.screenName, params: toScreen.params}}
       >{children}
       </Link>
     );
@@ -90,6 +91,7 @@ const AppText = ({
   return (
     <Text
       {...props}
+      style={textCompleteStyle}
     >{children}
     </Text>
   )
