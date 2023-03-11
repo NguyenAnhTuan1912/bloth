@@ -45,6 +45,7 @@ const SlideView = ({ children }) => {
  * @property {number} previousScrollToCenter Gía trị để scroll button trước về giữa.
  * @property {number[]} scrollToXList Danh sách giá trị để scroll button về giữa.
  * @property {number} prevSlideIndex Chỉ mục của index trước.
+ * @property {number} tabButtonScrollContainerWidth Chỉ mục của index trước.
  * @property {boolean} isSliderButtonPress Button có được ấn hay chưa.
  * @property {boolean} isFirstRender Có phải là first render không? Dùng để tránh animation lần đầu render.
  */
@@ -74,6 +75,7 @@ const AppTabSlider = ({
     previousScrollToCenter: 0,
     scrollToXList: [],
     prevSlideIndex: 0,
+    tabButtonScrollContainerWidth: 0,
     isSliderButtonPress: false,
     isFirstRender: true
   });
@@ -152,6 +154,11 @@ const AppTabSlider = ({
         showsHorizontalScrollIndicator={false}
         style={[styles.slider_button_container, { backgroundColor: theme.colors.background }]}
         overScrollMode="never"
+        onLayout={e => {
+          const {width} = e.nativeEvent.layout;
+          console.log("Slider's width: ", width);
+          sliderInfoRef.current.tabButtonScrollContainerWidth = width;
+        }}
       >
         {
           listSlideName.map((slideName, index) =>
@@ -160,12 +167,14 @@ const AppTabSlider = ({
                 key={slideName + 'container'}
                 onLayout={e => {
                   const { x, width } = e.nativeEvent.layout;
-                  const snapItemPosition = (app_dms.screenWidth / 2)
-                  const distanceFromXToSnapPosition = x - snapItemPosition;
-                  const halfWidthOfButton = (width / 2);
-                  const distanceForScrollingToCenterButton = distanceFromXToSnapPosition + halfWidthOfButton;
-                  sliderInfoRef.current.scrollToXList[index] = distanceForScrollingToCenterButton;
-                  console.log(`Button ${slideName}: ${distanceFromXToSnapPosition}, x: ${x}, Snap position: ${snapItemPosition}`);
+                  setTimeout(() => {
+                    const snapItemPosition = (sliderInfoRef.current.tabButtonScrollContainerWidth / 2)
+                    const distanceFromXToSnapPosition = x - snapItemPosition;
+                    const halfWidthOfButton = (width / 2);
+                    const distanceForScrollingToCenterButton = distanceFromXToSnapPosition + halfWidthOfButton;
+                    sliderInfoRef.current.scrollToXList[index] = distanceForScrollingToCenterButton;
+                    console.log(`Button ${slideName}: ${distanceFromXToSnapPosition}, x: ${x}, center: ${distanceForScrollingToCenterButton}, slider'width: ${sliderInfoRef.current.tabButtonScrollContainerWidth}`);
+                  }, 0);
                 }}
               >
                 <Button
