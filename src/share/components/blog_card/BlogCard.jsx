@@ -2,6 +2,8 @@ import styles from './BlogCardStyles'
 import { View, Image } from 'react-native';
 import {  Avatar, IconButton, MD3Colors} from 'react-native-paper'
 
+import Ionicons from 'react-native-vector-icons/Ionicons'
+
 import AppText from '../app_text/AppText';
 
 import app_sp from 'styles/spacing';
@@ -17,7 +19,7 @@ function BlogCard(props) {
                   }}
                   size = {18}
                 />
-                <AppText font="body3" style={app_sp.ms_6}>{props.userName}</AppText>
+                <AppText font="sub1" style={app_sp.ms_6}>{props.userName}</AppText>
               </View >
               <View style= {styles.blogItem}>
                 <Image 
@@ -34,27 +36,27 @@ function BlogCard(props) {
                 </View>
               </View>
               <View style = {styles.btnGroupBlog}>
-                    <IconButton
-                      size={8}
-                      style= {styles.btnBlog}
-                      onPress = {() => {
-                        alert('chức năng 1')
-                      }}
-                    />
-                    <IconButton 
-                      size={8}
-                      style= {styles.btnBlog}
-                      onPress = {() => {
-                        alert('chức năng 2')
-                      }}
-                    />
-                    <IconButton 
-                      size={8}
-                      style= {styles.btnBlog}
-                      onPress = {() => {
-                        alert('chức năng 3')
-                      }}
-                    />
+                <IconButton
+                  size={16}
+                  icon = {() => <Ionicons size={16} name="bookmark-outline" />}
+                  onPress = {() => {
+                    alert('chức năng 1')
+                  }}
+                />
+                <IconButton 
+                  size={16}
+                  icon = {() => <Ionicons size={16} name = "remove-outline" />}
+                  onPress = {() => {
+                    alert('chức năng 2')
+                  }}
+                />
+                <IconButton 
+                  size={16}
+                  icon={() => <Ionicons size={16} name="ellipsis-horizontal" />}
+                  onPress = {() => {
+                    alert('chức năng 3')
+                  }}
+                />
               </View>
           </View>
         </View >

@@ -15,10 +15,7 @@ const styles = StyleSheet.create ({
     left:88
   },
   blogUserName : {
-    fontFamily: 'Montserrat', 
-    fontStyle: 'normal', 
-    fontWeight: '400', 
-    fontSize: 14, 
+     // fontFamily: 'Montserrat', 
     color: '#262626', 
     lineHeight: 15,
     marginLeft: 5
@@ -34,15 +31,13 @@ const styles = StyleSheet.create ({
       marginRight: 18
     },
     blogTitle : {
-      fontFamily: 'Montserrat',
-      fontStyle:'normal', 
-      fontWeight: '700', 
+      // fontFamily: 'Montserrat',
       fontSize:14, 
       lineHeight: 17, 
-      color: '#262626'
+      color: '#262626',
     }, 
     blogTimeUp : {
-      fontFamily: 'Montserrat',
+      // fontFamily: 'Montserrat',
       fontStyle:'normal', 
       fontWeight: '400', 
       fontSize:  12, 
