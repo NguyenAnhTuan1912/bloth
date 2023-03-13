@@ -30,8 +30,50 @@ function getHeaderTitle(route) {
   return routeName;
 }
 
+/**
+ * Hàm này dùng để xử lý các tác vụ bất đồng bộ. Thay vì viết `setTimeout` thì có thể dùng hàm này cho gọn.
+ * 
+ * __How to use?__
+ * ```js
+ * asyncTask(1000)
+ * .then(message => {
+ *  console.log(message); // Done
+ * // Các task khác ở đây.
+ * })
+ * ```
+ * 
+ * @param {number} milisecond Thời gian chờ của task.
+ */
+function asyncTask(milisecond) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Done");
+    }, milisecond)
+  });
+}
+
+/**
+ * Hàm này sẽ nhận vào một biến điều kiện, đồng thời là một mảng gồm 2 phần tử là chữ mà cần chọn dựa theo điều kiện.
+ * Nó sẽ chọn 1 trong hai chuỗi được truyền vào đó. Nếu `condition = true` thì nó sẽ chọn chuỗi đầu tiên, và ngược lại.
+ * Do thằng React Native Paper ngu quá nên t phải làm cái hàm này.
+ * 
+ * __How to use?__
+ * ```js
+ * const condition = true;
+ * switchTextByCondition(condition, ["checked", "unchecked"]); // Trả về "checked"
+ * ```
+ * @param {boolean} condition Điều khiện
+ * @param {*} texts 
+ * @returns 
+ */
+function switchTextByCondition(condition, texts) {
+  return condition ? texts[0] : texts[1]
+}
+
 const FunctionsUtility = {
-  getHeaderTitle
+  getHeaderTitle,
+  asyncTask,
+  switchTextByCondition
 }
 
 export default FunctionsUtility;

@@ -66,9 +66,10 @@ const AppTabSlider = ({
   if(!children) return null;
   if(!children.length) return children;
 
-  const SlideContainer = React.useMemo(() => isSliderContainerScrollable ? SlideScroll : SlideView, [isSliderContainerScrollable])
   const theme = useTheme();
+  const SlideContainer = React.useMemo(() => isSliderContainerScrollable ? SlideScroll : SlideView, [isSliderContainerScrollable])
 
+  
   const [currentSlideIndex, setSlideIndex] = React.useState(0);
   const scrollRef = React.useRef(null);
   const sliderInfoRef = React.useRef({
@@ -79,45 +80,45 @@ const AppTabSlider = ({
     isSliderButtonPress: false,
     isFirstRender: true
   });
-
+  
   const listSlideName = React.useMemo(() => {
     return children.map(child => (
       child.type.name === "Slide" && child.props.name !== "" && child.props.name
       ? child.props.name
       : null
-    ))
-  }, [children]);
-
-  const handlePressTabSlider = React.useCallback((slideIndex) => {
-    return function() {
-      sliderInfoRef.current.isSliderButtonPress = true;
-      setSlideIndex(prevState => {
-        sliderInfoRef.current.prevSlideIndex = prevState;
-        return slideIndex;
-      });
-    }
-  }, [listSlideName]);
-
+      ))
+    }, [children]);
+    
+    const handlePressTabSlider = React.useCallback((slideIndex) => {
+      return function() {
+        sliderInfoRef.current.isSliderButtonPress = true;
+        setSlideIndex(prevState => {
+          sliderInfoRef.current.prevSlideIndex = prevState;
+          return slideIndex;
+        });
+      }
+    }, [listSlideName]);
+    
   const direction = currentSlideIndex > sliderInfoRef.current.prevSlideIndex ? 1 : (-1);
   const lineTranslateAmin = new Animated.Value(lineIndexTranslateXStart * direction * -1);
   const translateAnim = new Animated.Value(slideTranslateXStart * direction);
   const opacityAnim = new Animated.Value(0);
 
   console.log("AppTabSlider is rendering...");
-
+  
   if(sliderInfoRef.current.isFirstRender) {
     translateAnim.setValue(0);
     lineTranslateAmin.setValue(0);
     opacityAnim.setValue(1);
   }
-
+  
   if(sliderInfoRef.current.isSliderButtonPress) {
     Animated.timing(translateAnim, {
       toValue: 0,
       duration: 200,
       useNativeDriver: true
     }).start();
-  
+    
     Animated.timing(lineTranslateAmin, {
       toValue: 0,
       duration: 100,
@@ -137,17 +138,17 @@ const AppTabSlider = ({
           y: 0,
           animated: true
         }
-      )
-    } else if(scrollRef.current && currentSlideIndex === 0) {
-      scrollRef.current.scrollTo({x: 0, y: 0, animated: true})
+        )
+      } else if(scrollRef.current && currentSlideIndex === 0) {
+        scrollRef.current.scrollTo({x: 0, y: 0, animated: true})
+      }
     }
-  }
-
-  sliderInfoRef.current.isSliderButtonPress = false;
-  sliderInfoRef.current.isFirstRender = false;
-
-  return (
-    <View style={styles.slider_container}>
+    
+    sliderInfoRef.current.isSliderButtonPress = false;
+    sliderInfoRef.current.isFirstRender = false;
+    
+    return (
+      <View style={styles.slider_container}>
       <ScrollView
         ref={scrollRef}
         horizontal
@@ -159,7 +160,7 @@ const AppTabSlider = ({
           console.log("Slider's width: ", width);
           sliderInfoRef.current.tabButtonScrollContainerWidth = width;
         }}
-      >
+        >
         {
           listSlideName.map((slideName, index) =>
             slideName ? (

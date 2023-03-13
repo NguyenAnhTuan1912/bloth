@@ -8,6 +8,7 @@ import ArchiveScreen from './screens/archive/ArchiveScreen';
 import AppHeader from 'share/components/app_header/AppHeader';
 
 import { NavigationProps, ScreenProps } from 'share/types/index.d';
+import BlogDetailScreen from 'share/screens/blog_detail/BlogDetailScreen';
 
 const ArchiveStack = createNativeStackNavigator();
 
@@ -25,8 +26,12 @@ export default function ArchiveNavigator({
   return (
     <NavigationContainer independent>
       <ArchiveStack.Navigator initialRouteName='HomeScreen' screenOptions={{ header: props => <AppHeader {...props} />}}>
-        <ArchiveStack.Screen name="HomeScreen" options={{ title: 'Archive' }}>
+        <ArchiveStack.Screen name="ArchieveScreen" options={{ title: 'Archive' }}>
           {props => <ArchiveScreen {...props} appNavigation={appNavigation} />}
+        </ArchiveStack.Screen>
+
+        <ArchiveStack.Screen name="BlogDetailScreen" options={{ title: 'Blog Detail' }}>
+          {props => <BlogDetailScreen {...props} appNavigation={appNavigation} />}
         </ArchiveStack.Screen>
       </ArchiveStack.Navigator>
     </NavigationContainer>

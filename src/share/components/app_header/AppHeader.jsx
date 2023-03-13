@@ -1,6 +1,5 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { NavigationProp, RouteProp, ParamListBase } from '@react-navigation/native'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Button, IconButton, useTheme } from 'react-native-paper'
@@ -11,23 +10,23 @@ import styles from './AppHeaderStyles'
 import app_c from 'styles/colors'
 import app_sh from 'styles/shape'
 
-/**
- * @typedef NavigationProps
- * @property {RouteProp<ParamListBase, string>} route
- * @property {NavigationProp<T>} navigation
- */
+import { NavigationProps } from 'share/types/index.d'
 
 /**
  * @typedef HeaderProps
- * @property {string} props.screenName - Tên của screen.
- * @property {string} props.back.title - Header có background hay không?
- * @property {object} props.options - [Override NativeStackNavigationOptions] Options của screen.
- * @property {boolean} props.options.headerTransparent - [Override Property] Thông số chỉnh transparent cho header's background.
- * @property {string} props.options.title - [Override Property] Thông số chỉnh title cho header's background.
- * @property {'type_1' | 'type_2' | 'type_3' | 'type_4' | 'type_5'} props.options.boxShadowType - [Override Property] Thông số chỉnh boxShadow cho header's background.
- * @property {() => JSX.Element} props.setLeftPart - Function cho phép custom phần bên trái của Header.
- * @property {() => JSX.Element} props.setCenterPart - Function cho phép custom phần giữa của Header.
- * @property {() => JSX.Element} props.setRightPart - Function cho phép custom phần phải trái của Header.
+ * @property {'type_1' | 'type_2' | 'type_3' | 'type_4' | 'type_5'} [boxShadowType=] - Đổ bóng cho button theo loại, xem thêm trong `box-shadow.js`.
+ * @property {string} screenName - Tên của screen.
+ * @property {object} back - Dùng cho nút back.
+ * @property {string} back.title - Header có background hay không?
+ * @property {object} navigation - Object navigation.
+ * @property {object} route - Thông tin về Route.
+ * @property {object} options - [Override NativeStackNavigationOptions] Options của screen.
+ * @property {boolean} options.headerTransparent - [Override Property] Thông số chỉnh transparent cho header's background.
+ * @property {string} options.title - [Override Property] Thông số chỉnh title cho header's background.
+ * @property {'type_1' | 'type_2' | 'type_3' | 'type_4' | 'type_5'} options.boxShadowType - [Override Property] Thông số chỉnh boxShadow cho header's background.
+ * @property {() => JSX.Element} setLeftPart - Function cho phép custom phần bên trái của Header.
+ * @property {() => JSX.Element} setCenterPart - Function cho phép custom phần giữa của Header.
+ * @property {() => JSX.Element} setRightPart - Function cho phép custom phần phải trái của Header.
  */
 
  /**
@@ -39,7 +38,10 @@ import app_sh from 'styles/shape'
  * @returns `View` component với styles
  */
 const AppHeader = ({
+  boxShadowType,
   screenName,
+  marginBottom,
+  back,
   navigation,
   route,
   options,
@@ -51,7 +53,7 @@ const AppHeader = ({
   const canSetLeftPart = typeof setLeftPart === 'function';
   const canSetCenterPart = typeof setCenterPart === 'function';
   const canSetRightPart = typeof setRightPart === 'function';
-  const canSetBackButton = navigation.canGoBack();
+  const canSetBackButton = back;
   const title = (
     options.title !== "" && options.title
     ? options.title
@@ -74,50 +76,48 @@ const AppHeader = ({
   return (
     <View style={headerStyle}>
       {/* Phần bên trái */}
-      {canSetLeftPart
-        ? setLeftPart()
-        : (
-          <View style={{...styles.header_col, justifyContent: 'flex-start', alignItems: 'center'}}>
-            {
-              canSetBackButton
-              && (
-                <IconButton
-                  mode="text"
-                  onPress={() => { navigation.goBack() }}
-                  icon={({size, color}) => (
-                    <Ionicons name="chevron-back-outline" size={18} color={color} />
-                  )}
-                />
-              )
-            }
-          </View>
-        )
-      }
+      <View style={{...styles.header_col, justifyContent: 'flex-start', alignItems: 'center'}}>
+        {
+          canSetLeftPart
+          ? setLeftPart()
+          : (
+            canSetBackButton && <IconButton
+              mode="text"
+              onPress={() => { navigation.goBack() }}
+              icon={({size, color}) => (
+                <Ionicons name="chevron-back-outline" size={18} color={color} />
+              )}
+            />
+          )
+        }
+      </View>
 
       {/* Phần ở giữa */}
-      {canSetCenterPart
-        ? setCenterPart()
-        : (
-          <View style={{...styles.header_col, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{...styles.header_col, justifyContent: 'center', alignItems: 'center'}}>
+        {
+          canSetCenterPart
+          ? setCenterPart()
+          : (
             <AppText weight="lighter" font="h5" color={theme.colors.onBackground} style={{textAlign: 'center'}}>{title}</AppText>
-          </View>
-        )
-      }
+          )
+        }
+      </View>
 
       {/* Phần bên phải */}
-      {canSetRightPart
-        ? setRightPart()
-        : (
-          <View style={{...styles.header_col, justifyContent: 'flex-end', alignItems: 'center'}}>
+      <View style={{...styles.header_col, justifyContent: 'flex-end', alignItems: 'center'}}>
+        {
+          canSetRightPart
+          ? setRightPart()
+          : (
             <IconButton
               onPress={() => {}}
               icon={({size, color}) => (
                 <Ionicons name="search-outline" size={18} color={color} />
               )}
             />
-          </View>
-        )
-      }
+          )
+        }
+      </View>
     </View>
   )
 }

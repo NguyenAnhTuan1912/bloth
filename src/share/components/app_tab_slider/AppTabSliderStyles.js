@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
 
   slide_container: {
     flex: 1,
-    width: '100%'
+    width: '100%',
+    height: '100%'
   }
 });
 

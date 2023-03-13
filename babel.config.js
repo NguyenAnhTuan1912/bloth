@@ -7,7 +7,7 @@ module.exports = function (api) {
       [
         require.resolve('babel-plugin-module-resolver'),
         {
-          root: ['./src']
+          root: ['src']
         }
       ],
     ]

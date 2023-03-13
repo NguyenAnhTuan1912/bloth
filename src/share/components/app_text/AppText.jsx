@@ -43,30 +43,21 @@ const AppText = ({
   toScreen = { screenName: "", params: {} },
   ...props
 }) => {
+  const theme = useTheme();
   let stylePropIsArray = props.style instanceof Array;
 
   let textStyle = React.useMemo(() => (
     {
       ...app_typo.fonts[fontFamily][fontStyle][weight][font],
-      color: color
+      color: color ? color : theme.colors.onBackground
     }
-  ), [fontStyle, weight, font, color]);
-
-  if(stylePropIsArray) {
-    let copyOfStyleProp = props.style.concat();
-    copyOfStyleProp.unshift(textStyle);
-    props.style = copyOfStyleProp;
-  } else {
-    let copyOfStyleProp = {...props.style};
-    props.style = Object.assign({}, textStyle , copyOfStyleProp);
-  }
+  ), [fontStyle, weight, font, color, theme]);
 
   let textCompleteStyle = ComponentUtility.mergeStyle(props.style, textStyle);
 
   // Sẽ thêm hàm validate url sau, tạm thời dùng điệu kiện hyperLink !== ''
   if(hyperLink && hyperLink !== '') {
-    const theme = useTheme();
-    textCompleteStyle[0].color = theme.colors.primary;
+    textCompleteStyle = ComponentUtility.mergeStyle(props.style, { color: theme.colors.primary });
     return (
       <Text
         {...props}
