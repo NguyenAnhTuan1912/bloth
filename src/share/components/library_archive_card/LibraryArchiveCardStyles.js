@@ -5,7 +5,7 @@ import app_c from "styles/colors";
 import app_sh from "styles/shape";
 
 const styles = StyleSheet.create ({
-  blog_container: {
+  libcard_container: {
     flex: 1,
     width: '100%',
     flexDirection: 'row',
@@ -15,32 +15,37 @@ const styles = StyleSheet.create ({
     ...app_sp.pv_12
   },
 
-  blog_container_col: {
+  libcard_container_col: {
     flex: 1,
     alignItems: 'flex-start'
   },
 
-  blog_image: {
-    width: '100%',
+  libcard_container_row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  libcard_image: {
+    width: '60%',
     aspectRatio: 1,
     backgroundColor: `rgb(${app_c.RGB.ext_third})`,
     ...app_sh.rounded_8
   },
 
-  blog_content_container: {
+  libcard_content_container: {
     flex: 2,
     width: '100%',
     ...app_sp.ms_12,
   },
 
-  blog_author_info_container: {
+  libcard_author_info_container: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     ...app_sp.mb_6
   },
 
-  blog_content_button_container: {
+  libcard_content_button_container: {
     flex: 1, width: '100%',
     flexDirection: 'row',
     justifyContent: 'flex-end',

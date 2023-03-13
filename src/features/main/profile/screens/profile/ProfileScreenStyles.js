@@ -80,10 +80,6 @@ const styles = StyleSheet.create({
   },
 
   // blogs
-  myBlog : {
-    borderTopWidth: 1,
-    borderColor:'rgba(38, 38, 38, 0.5)'
-  },
   blogHeader : {
     // fontFamily: 'Montserrat',
     fontSize: 16,

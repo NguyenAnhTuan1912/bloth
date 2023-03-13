@@ -4,12 +4,15 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Button, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { useFonts } from 'expo-font';
+import { ThemeContext } from 'share/contexts/ThemeContext';
 
-import Constants from 'expo-constants';
+import { useFonts } from 'expo-font';
 
 import AppNavigator from 'AppNavigator';
 import BlothTheme from 'styles/theme';
+import CustomStatusBar from 'share/components/custom_status_bar/CustomStatusBar';
+import SplashScreen from 'share/screens/SplashScreen';
+import AppText from 'share/components/app_text/AppText';
 
 const customFonts = {
   'Montserrat-Black': require('./assets/fonts/montserrat/Montserrat-Black.ttf'),
@@ -45,77 +48,49 @@ const customFonts = {
     'SourceSerifPro-SemiBoldItalic': require('./assets/fonts/source_serif_pro/SourceSerifPro-SemiBoldItalic.ttf')
 }
 
-/**
- * @typedef CustomeStatusBarProps
- * @property {string} backgroundColor Màu cho background của status bar.
- * @property {'light' | 'dark'} theme Theme của app.
- * @property {'ios' | 'android'} platform Nền tảng mà app đang chạy.
- */
-
-/**
- * Dùng để custom Background cho status bar.
- * @param {CustomeStatusBarProps} props Props của component
- * @return `View` chứa `StatusBar` ở trong.
- */
-const CustomStatusBar = (
-  {
-    backgroundColor,
-    theme = "light",
-    platform
-  }
-) => {
-   return (
-    platform === 'ios'
-    ? (
-      <View
-        style={{
-          width: '100%',
-          height: Constants.statusBarHeight,
-          position: 'absolute',
-          zIndex: 1000,
-          backgroundColor
-        }}
-      >
-        <StatusBar
-          animated={true}
-          backgroundColor
-          barStyle={theme === "light" ? "dark-content" : "light-content"}
-        />
-      </View>
-    )
-    : (
-      <StatusBar
-        animated={true}
-        backgroundColor={backgroundColor}
-        barStyle={theme === "light" ? "dark-content" : "light-content"}
-      />
-    )
-  )
-}
-
 export default function App() {
   const [fontsLoaded] = useFonts(customFonts);
-  const theme = "light";
+  const [theme, setTheme] = React.useState('dark');
+
+  // Cái này hiện tại chưa có tác dụng gì, là bởi t dùng để track xem là theme đổi xong chưa.
+  // Tuy nhiên thì theme nó đổi rồi (không gây block UI), nhưng tụi m vẫn thấy chậm là do component nó render lại.
+  // => Set theme và component render lại là 2 đợt execution khá nhau.
+  // Nhưng t vẫn để tạm nó ở đây.
+  const [isPending, startTransition] = React.useTransition();
+
+  const setCurrentTheme = (theme) => {
+    startTransition(() => {
+      console.log("Start Transition");
+      setTheme(theme);
+    });
+  }
+
+  console.log("isPending: ", isPending)
 
   console.log("Font loaded: ", fontsLoaded);
 
   if(!fontsLoaded) {
-    return null;
+    return <SplashScreen />;
   }
 
   return (
     <PaperProvider theme={BlothTheme[theme]}>
-      <View style={styles.container}>
-        <CustomStatusBar
-          theme={theme}
-          platform={Platform.OS}
-          backgroundColor={BlothTheme[theme].colors.background}
-        />
+      <ThemeContext.Provider value={{ currentTheme: theme, setCurrentTheme: setTheme }}>
+        <View style={styles.container}>
+          <CustomStatusBar
+            theme={theme}
+            platform={Platform.OS}
+            backgroundColor={BlothTheme[theme].colors.background}
+          />
 
-        <NavigationContainer>
-          <AppNavigator />
-        </NavigationContainer>
-      </View>
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
+
+          { isPending && <SplashScreen /> }
+
+        </View>
+      </ThemeContext.Provider>
     </PaperProvider>
   );
 }

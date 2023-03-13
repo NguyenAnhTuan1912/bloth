@@ -1,15 +1,22 @@
-import { View, Text, SafeAreaView, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, FlatList } from 'react-native'
 import React from 'react'
-import { RouteProp, ParamListBase, NavigationProp } from '@react-navigation/native'
+
+import FunctionsUtility from 'utilities/functions'
 
 import { Button, useTheme } from 'react-native-paper'
 
 import withState from 'share/hocs/withState'
 
 import AppText from 'share/components/app_text/AppText'
+import BlogCard from 'share/components/blog_card/BlogCard'
+import BlogCardSkeleton from 'share/components/blog_card/BlogCardSkeleton'
 
 import styles from './BlogsScreenStyles'
 import AppTabSlider from 'share/components/app_tab_slider/AppTabSlider'
+
+import { NavigationProps, BlogCardProps } from 'share/types/index.d'
+
+import { BlogCardDataCollection } from 'data/BlogCardData'
 
 /**
  * @typedef BlogListProps
@@ -25,20 +32,40 @@ const BlogListWithOutState = ({
   data = [],
   setData
 }) => {
+  React.useEffect(() => {
+    FunctionsUtility
+    .asyncTask(2000)
+    .then(message => {
+      console.log(message);
+      setData(BlogCardDataCollection)
+    })
+  }, [])
+
   return (
-    <View style={{width: '100%', height: 1000, backgroundColor: 'red'}}>
-      {data.map(blog => (
-        <AppText key={blog}>{blog}</AppText>
-      ))}
+    <View style={{width: '100%'}}>
+      {
+        data.length === 0
+        ? (
+          <ScrollView>
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+          </ScrollView>
+        )
+        : (
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <BlogCard {...item} />
+            )}
+            keyExtractor={item => item.id}
+          />
+        )
+      }
     </View>
   );
 }
-
-/**
- * @typedef NavigationProps
- * @property {RouteProp<ParamListBase, string>} route
- * @property {NavigationProp<T>} navigation
- */
 
 /**
  * Đây là screen Sign in
@@ -53,30 +80,18 @@ export default function BlogsScreen({
 
   const BlogSlides = React.useMemo(() => [
     {
-      name: "technology",
+      name: "For you",
       RenderComponent: withState(BlogListWithOutState)
     },
     {
       name: "life",
       RenderComponent: withState(BlogListWithOutState)
     },
-    {
-      name: "social",
-      RenderComponent: withState(BlogListWithOutState)
-    },
-    {
-      name: "programming",
-      RenderComponent: withState(BlogListWithOutState)
-    },
-    {
-      name: "space",
-      RenderComponent: withState(BlogListWithOutState)
-    }
   ], []);
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <AppTabSlider isSliderContainerScrollable>
+      <AppTabSlider>
         {
           BlogSlides.map(BlogSlide => (
             <AppTabSlider.Slide name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />

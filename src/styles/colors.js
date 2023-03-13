@@ -59,12 +59,26 @@ const HEX = {
 	second: APP_SECOND_COLOR.HEX,
 	third: APP_THIRD_COLOR.HEX,
 	fourth: APP_FOURTH_COLOR.HEX,
+	sub_primary: APP_SUB_PRIMARY_COLOR.HEX,
+	sub_second: APP_SUB_SECOND_COLOR.HEX,
+	sub_third: APP_SUB_THIRD_COLOR.HEX,
+	sub_fourth: APP_SUB_FOURTH_COLOR.HEX,
+	ext_primary: APP_EXT_PRIMARY_COLOR.HEX,
+	ext_second: APP_EXT_SECOND_COLOR.HEX,
+	ext_third: APP_EXT_THIRD_COLOR.HEX
 }
 const RGB = {
 	primary: APP_PRIMARY_COLOR.RGB,
 	second: APP_SECOND_COLOR.RGB,
 	third: APP_THIRD_COLOR.RGB,
 	fourth: APP_FOURTH_COLOR.RGB,
+	sub_primary: APP_SUB_PRIMARY_COLOR.RGB,
+	sub_second: APP_SUB_SECOND_COLOR.RGB,
+	sub_third: APP_SUB_THIRD_COLOR.RGB,
+	sub_fourth: APP_SUB_FOURTH_COLOR.RGB,
+	ext_primary: APP_EXT_PRIMARY_COLOR.RGB,
+	ext_second: APP_EXT_SECOND_COLOR.RGB,
+	ext_third: APP_EXT_THIRD_COLOR.RGB
 }
 
 const app_c = {

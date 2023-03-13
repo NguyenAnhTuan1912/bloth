@@ -1,5 +1,5 @@
 
-import { View, Text, SafeAreaView, ScrollView, Image } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, Image, FlatList } from 'react-native'
 import React from 'react'
 import { RouteProp, ParamListBase, NavigationProp } from '@react-navigation/native'
 
@@ -8,11 +8,15 @@ import { Button, useTheme, Avatar, IconButton } from 'react-native-paper'
 import withState from 'share/hocs/withState'
 
 import AppText from 'share/components/app_text/AppText'
-import styles from '../../ArchiveScreenStyles'
+import styles from './ArchiveScreenStyles'
 
 import AppTabSlider from 'share/components/app_tab_slider/AppTabSlider'
 import BlogCard from 'share/components/blog_card/BlogCard'
-import LibraryArchiveScreen from './LibraryArchive'
+import LibraryArchiveCard from 'share/components/library_archive_card/LibraryArchiveCard'
+import LibraryArchiveCardSkeleton from 'share/components/library_archive_card/LibraryArchiveCardSkeleton'
+import FunctionsUtility from 'utilities/functions'
+import { BlogCardDataCollection } from 'data/BlogCardData'
+import BlogCardSkeleton from 'share/components/blog_card/BlogCardSkeleton'
 
 /**
  * @typedef BlogListProps
@@ -28,14 +32,36 @@ const LikedArchive = ({
   data = [],
   setData
 }) => {
+  React.useEffect(() => {
+    FunctionsUtility
+    .asyncTask(2000)
+    .then(() => {
+      setData(BlogCardDataCollection)
+    })
+  }, []);
+
   return (
     <View style={{width: '100%'}}>
-      <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/zAbBqX' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Kiều Trinh' image = 'https://bom.so/W6Hfry' title ='Essential Convepts in Funtional Programming With JavaScript.' time = 'Feb 11, 2023 - 10 min read' />
-      <BlogCard userName = 'Lê Văn Hải' image = 'https://bom.so/xLT9ss' title ='All Javascript and TypeScript Features of the last 4 years.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Lê Văn Hải' image = 'https://bom.so/Cw4wWt' title ='Programming principles they don teach you in school.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Đàm Phúc Lộc' image = 'https://bom.so/t6YKLi' title ='Now four years sober, I found non-alcoholic paradise in this outer Richmound ravern.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Đàm Phúc Lộc' image = 'https://bom.so/rBUTNZ' title ='Now four years sober, I found non-alcoholic paradise in this outer Richmound ravern.' time = 'Feb 24, 2023 - 4 min read' />
+      {
+        data.length === 0
+        ? (
+          <ScrollView>
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+          </ScrollView>
+        )
+        : (
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <BlogCard {...item} />
+            )}
+            keyExtractor={item => item.id}
+          />
+        )
+      }
     </View>
   );
 }
@@ -44,14 +70,36 @@ const SavedArchive = ({
   data = [],
   setData
 }) => {
+  React.useEffect(() => {
+    FunctionsUtility
+    .asyncTask(2000)
+    .then(() => {
+      setData(BlogCardDataCollection)
+    })
+  }, []);
+
   return (
     <View style={{width: '100%'}}>
-      <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/zAbBqX' title ='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Nguyễn Anh Tuấn' image = 'https://bom.so/xLT9ss' title ='Now four years sober, I found non-alcoholic paradise in this outer Richmound ravern.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Lê Văn Hải' image = 'https://bom.so/VNMliM' title ='Essential Convepts in Funtional Programming With JavaScript.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Lê Văn Hải' image = 'https://bom.so/pGjD8Z' title ='All Javascript and TypeScript Features of the last 4 years.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Đàm Phúc Lộc' image = 'https://bom.so/uEBIm0' title ='Now four years sober, I found non-alcoholic paradise in this outer Richmound ravern.' time = 'Feb 24, 2023 - 4 min read' />
-      <BlogCard userName = 'Hoàng Quỳnh' image = 'https://bom.so/rBUTNZ' title ='Now four years sober, I found non-alcoholic paradise in this outer Richmound ravern.' time = 'Feb 24, 2023 - 4 min read' />
+      {
+        data.length === 0
+        ? (
+          <ScrollView>
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+          </ScrollView>
+        )
+        : (
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <BlogCard {...item} />
+            )}
+            keyExtractor={item => item.id}
+          />
+        )
+      }
     </View>
   );
 }
@@ -60,16 +108,35 @@ const LibraryArchive = ({
   data = [],
   setData
 }) => {
+  
+  React.useEffect(() => {
+    FunctionsUtility
+    .asyncTask(2000)
+    .then(() => {
+      setData([1])
+    })
+  }, []);
+
   return (
-    <View style={{width: '100%'}}>
-       <LibraryArchiveScreen countBlog = '5' countAuthor = '3' title ='My Favorite' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/Qehzsw' image2='https://bom.so/xLT9ss' />
-       <LibraryArchiveScreen countBlog = '6' countAuthor = '2' title ='My Favorite' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/FriPnP' image2='https://bom.so/xLT9ss' />
-       <LibraryArchiveScreen countBlog = '4' countAuthor = '3' title ='My Favorite' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/Qehzsw' image2='https://bom.so/YJgXyw' />
-       <LibraryArchiveScreen countBlog = '5' countAuthor = '4' title ='My Favorite' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/Qehzsw' image2='https://bom.so/xLT9ss' />
-       <LibraryArchiveScreen countBlog = '5' countAuthor = '3' title ='My Favorite' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/Qehzsw' image2='https://bom.so/xLT9ss' />
-       <LibraryArchiveScreen countBlog = '5' countAuthor = '3' title ='My Favorite' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/Qehzsw' image2='https://bom.so/xLT9ss' />
-       <LibraryArchiveScreen countBlog = '5' countAuthor = '3' title ='My Favorite' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/Qehzsw' image2='https://bom.so/xLT9ss' />
-    </View>
+    <ScrollView style={{width: '100%'}}>
+      {
+        data.length === 0
+        ? (
+          <>
+            <LibraryArchiveCardSkeleton />
+            <LibraryArchiveCardSkeleton />
+            <LibraryArchiveCardSkeleton />
+          </>
+        )
+        : (
+          <>
+            <LibraryArchiveCard countBlog = '5' countAuthor = '3' title ='My Favorite' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/Qehzsw' image2='https://bom.so/xLT9ss' />
+            <LibraryArchiveCard countBlog = '6' countAuthor = '2' title ='Tech' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/FriPnP' image2='https://bom.so/xLT9ss' />
+            <LibraryArchiveCard countBlog = '4' countAuthor = '3' title ='Design' des = 'Save for read later' image='https://bom.so/olfaxe' image1 ='https://bom.so/Qehzsw' image2='https://bom.so/YJgXyw' />
+          </>
+        )
+      }
+    </ScrollView>
   );
 }
 
@@ -107,7 +174,7 @@ export default function ArchiveScreen({
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <AppTabSlider isSliderContainerScrollable>
+      <AppTabSlider>
         {
           BlogSlides.map(BlogSlide => (
             <AppTabSlider.Slide name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
