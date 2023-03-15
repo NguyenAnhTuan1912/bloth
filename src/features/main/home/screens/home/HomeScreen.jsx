@@ -14,6 +14,7 @@ import BlogCard from 'share/components/blog_card/BlogCard'
 import FunctionsUtility from 'utilities/functions'
 import { BlogCardDataCollection } from 'data/BlogCardData'
 import BlogCardSkeleton from 'share/components/blog_card/BlogCardSkeleton'
+import app_sp from 'styles/spacing'
 
 /**
  * @typedef BlogListProps
@@ -131,7 +132,8 @@ export default function HomeScreen({
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <AppText numberOfLines={2} font = 'h1' style= {styles.homeTitleHeader}>Reading is great and sharing is too. </AppText>
+      <AppText font = 'h1' style= {[app_sp.mt_12, app_sp.ph_18]}>Reading is great and sharing is too. </AppText>
+      <View style={{ height: 75 }}></View>
       <AppTabSlider>
         {
           BlogSlides.map(BlogSlide => (
