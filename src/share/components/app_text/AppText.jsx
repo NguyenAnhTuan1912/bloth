@@ -16,7 +16,7 @@ import app_c from 'styles/colors';
  * @property {'Montserrat' | 'SourceSerifPro'} [fontFamily=Montserrat] - Kiểu font
  * @property {'normal' | 'italic'} [fontStyle=normal] - Kiểu của chữ, bình thường hay là nghiêng.
  * @property {'normal' | 'lighter' | 'bolder'} [weight=normal] - Độ đậm của chữ.
- * @property {'h0' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'body0' | 'body1' | 'body2' | 'body3' | 'sub0' | 'sub1'} [font=body1] - Từ khoá liên quan tới font, được quy định trong typography.js.
+ * @property {'h0' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'body0' | 'body1' | 'body2' | 'sub0' | 'sub1'} [font=body1] - Từ khoá liên quan tới font, được quy định trong typography.js.
  * @property {string} color - Dùng để chỉnh màu cho chữ.
  * @property {string} hyperLink - Khi link này được truyền vào thì `AppText sẽ giốn như thẻ `a` ở web`.
  * @property {object}  toScreen - Một object chứa thông tin của route khác.

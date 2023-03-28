@@ -8,8 +8,8 @@ const APP_FONT_SIZE_16 = 16
 const APP_FONT_SIZE_18 = 18
 const APP_FONT_SIZE_22 = 22
 const APP_FONT_SIZE_24 = 24
+const APP_FONT_SIZE_28 = 28
 const APP_FONT_SIZE_32 = 32
-const APP_FONT_SIZE_40 = 40
 
 const APP_FONT_DECORATION_DASED = 'dashed'
 const APP_FONT_DECORATION_DOTTED = 'dotted'
@@ -39,7 +39,7 @@ const size = StyleSheet.create({
     fontSize: APP_FONT_SIZE_32
   },
   sz_40: {
-    fontSize: APP_FONT_SIZE_40
+    fontSize: APP_FONT_SIZE_32
   }
 })
 
@@ -100,18 +100,17 @@ const fonts = {
     normal: {
       bolder: {
         // Title
-        h0: { fontFamily: "Montserrat-Black", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "Montserrat-Black", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "Montserrat-Black", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "Montserrat-Black", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "Montserrat-Black", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "Montserrat-Black", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "Montserrat-Black", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "Montserrat-Black", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "Montserrat-Regular", fontSize: APP_FONT_SIZE_14},
@@ -120,18 +119,17 @@ const fonts = {
     
       normal: {
         // Title
-        h0: { fontFamily: "Montserrat-Bold", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "Montserrat-Bold", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "Montserrat-Bold", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "Montserrat-Bold", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "Montserrat-Bold", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "Montserrat-Bold", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "Montserrat-Bold", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "Montserrat-Bold", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "Montserrat-Regular", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "Montserrat-Regular", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "Montserrat-Regular", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "Montserrat-Regular", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "Montserrat-Regular", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "Montserrat-Regular", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "Montserrat-Regular", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "Montserrat-Light", fontSize: APP_FONT_SIZE_14},
@@ -140,18 +138,17 @@ const fonts = {
     
       lighter: {
         // Title
-        h0: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "Montserrat-Medium", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "Montserrat-Light", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "Montserrat-Light", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "Montserrat-Light", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "Montserrat-Light", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "Montserrat-Light", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "Montserrat-Light", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "Montserrat-Light", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "Montserrat-Thin", fontSize: APP_FONT_SIZE_14},
@@ -162,18 +159,17 @@ const fonts = {
     italic: {
       bolder: {
         // Title
-        h0: { fontFamily: "Montserrat-BlackItalic", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "Montserrat-BlackItalic", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "Montserrat-BlackItalic", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "Montserrat-BlackItalic", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "Montserrat-BlackItalic", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "Montserrat-BlackItalic", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "Montserrat-BlackItalic", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "Montserrat-BlackItalic", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "Montserrat-Italic", fontSize: APP_FONT_SIZE_14},
@@ -182,18 +178,17 @@ const fonts = {
     
       normal: {
         // Title
-        h0: { fontFamily: "Montserrat-BoldItalic", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "Montserrat-BoldItalic", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "Montserrat-BoldItalic", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "Montserrat-BoldItalic", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "Montserrat-BoldItalic", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "Montserrat-BoldItalic", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "Montserrat-BoldItalic", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "Montserrat-BoldItalic", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "Montserrat-Italic", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "Montserrat-Italic", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "Montserrat-Italic", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "Montserrat-Italic", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "Montserrat-Italic", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "Montserrat-Italic", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "Montserrat-Italic", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "Montserrat-LightItalic", fontSize: APP_FONT_SIZE_14},
@@ -202,18 +197,17 @@ const fonts = {
     
       lighter: {
         // Title
-        h0: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "Montserrat-MediumItalic", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "Montserrat-LightItalic", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "Montserrat-LightItalic", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "Montserrat-LightItalic", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "Montserrat-LightItalic", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "Montserrat-LightItalic", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "Montserrat-LightItalic", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "Montserrat-LightItalic", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "Montserrat-ThinItalic", fontSize: APP_FONT_SIZE_14},
@@ -225,18 +219,17 @@ const fonts = {
     normal: {
       bolder: {
          // Title
-         h0: { fontFamily: "SourceSerifPro-Black", fontSize: APP_FONT_SIZE_40},
-         h1: { fontFamily: "SourceSerifPro-Black", fontSize: APP_FONT_SIZE_32},
+         h0: { fontFamily: "SourceSerifPro-Black", fontSize: APP_FONT_SIZE_32},
+         h1: { fontFamily: "SourceSerifPro-Black", fontSize: APP_FONT_SIZE_28},
          h2: { fontFamily: "SourceSerifPro-Black", fontSize: APP_FONT_SIZE_24},
          h3: { fontFamily: "SourceSerifPro-Black", fontSize: APP_FONT_SIZE_22},
          h4: { fontFamily: "SourceSerifPro-Black", fontSize: APP_FONT_SIZE_18},
          h5: { fontFamily: "SourceSerifPro-Black", fontSize: APP_FONT_SIZE_16},
      
          // Body
-         body0: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_18},
-         body1: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_16},
-         body2: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_14},
-         body3: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_12},
+         body0: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_16},
+         body1: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_14},
+         body2: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_12},
      
          // Sub
          sub0: { fontFamily: "SourceSerifPro-Regular", fontSize: APP_FONT_SIZE_14},
@@ -245,18 +238,17 @@ const fonts = {
 
       normal: {
         // Title
-        h0: { fontFamily: "SourceSerifPro-Bold", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "SourceSerifPro-Bold", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "SourceSerifPro-Bold", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "SourceSerifPro-Bold", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "SourceSerifPro-Bold", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "SourceSerifPro-Bold", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "SourceSerifPro-Bold", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "SourceSerifPro-Bold", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "SourceSerifPro-Regular", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "SourceSerifPro-Regular", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "SourceSerifPro-Regular", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "SourceSerifPro-Regular", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "SourceSerifPro-Regular", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "SourceSerifPro-Regular", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "SourceSerifPro-Regular", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "SourceSerifPro-Light", fontSize: APP_FONT_SIZE_14},
@@ -265,18 +257,17 @@ const fonts = {
 
       lighter: {
         // Title
-        h0: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "SourceSerifPro-SemiBold", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "SourceSerifPro-Light", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "SourceSerifPro-Light", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "SourceSerifPro-Light", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "SourceSerifPro-Light", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "SourceSerifPro-Light", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "SourceSerifPro-Light", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "SourceSerifPro-Light", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "SourceSerifPro-ExtraLight", fontSize: APP_FONT_SIZE_14},
@@ -286,18 +277,17 @@ const fonts = {
     italic: {
       bolder: {
         // Title
-        h0: { fontFamily: "SourceSerifPro-BlackItalic", fontSize: APP_FONT_SIZE_40},
-        h1: { fontFamily: "SourceSerifPro-BlackItalic", fontSize: APP_FONT_SIZE_32},
+        h0: { fontFamily: "SourceSerifPro-BlackItalic", fontSize: APP_FONT_SIZE_32},
+        h1: { fontFamily: "SourceSerifPro-BlackItalic", fontSize: APP_FONT_SIZE_28},
         h2: { fontFamily: "SourceSerifPro-BlackItalic", fontSize: APP_FONT_SIZE_24},
         h3: { fontFamily: "SourceSerifPro-BlackItalic", fontSize: APP_FONT_SIZE_22},
         h4: { fontFamily: "SourceSerifPro-BlackItalic", fontSize: APP_FONT_SIZE_18},
         h5: { fontFamily: "SourceSerifPro-BlackItalic", fontSize: APP_FONT_SIZE_16},
     
         // Body
-        body0: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_18},
-        body1: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_16},
-        body2: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_14},
-        body3: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_12},
+        body0: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_16},
+        body1: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_14},
+        body2: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_12},
     
         // Sub
         sub0: { fontFamily: "SourceSerifPro-Italic", fontSize: APP_FONT_SIZE_14},
@@ -306,18 +296,17 @@ const fonts = {
 
      normal: {
        // Title
-       h0: { fontFamily: "SourceSerifPro-BoldItalic", fontSize: APP_FONT_SIZE_40},
-       h1: { fontFamily: "SourceSerifPro-BoldItalic", fontSize: APP_FONT_SIZE_32},
+       h0: { fontFamily: "SourceSerifPro-BoldItalic", fontSize: APP_FONT_SIZE_32},
+       h1: { fontFamily: "SourceSerifPro-BoldItalic", fontSize: APP_FONT_SIZE_28},
        h2: { fontFamily: "SourceSerifPro-BoldItalic", fontSize: APP_FONT_SIZE_24},
        h3: { fontFamily: "SourceSerifPro-BoldItalic", fontSize: APP_FONT_SIZE_22},
        h4: { fontFamily: "SourceSerifPro-BoldItalic", fontSize: APP_FONT_SIZE_18},
        h5: { fontFamily: "SourceSerifPro-BoldItalic", fontSize: APP_FONT_SIZE_16},
    
        // Body
-       body0: { fontFamily: "SourceSerifPro-Italic", fontSize: APP_FONT_SIZE_18},
-       body1: { fontFamily: "SourceSerifPro-Italic", fontSize: APP_FONT_SIZE_16},
-       body2: { fontFamily: "SourceSerifPro-Italic", fontSize: APP_FONT_SIZE_14},
-       body3: { fontFamily: "SourceSerifPro-Italic", fontSize: APP_FONT_SIZE_12},
+       body0: { fontFamily: "SourceSerifPro-Italic", fontSize: APP_FONT_SIZE_16},
+       body1: { fontFamily: "SourceSerifPro-Italic", fontSize: APP_FONT_SIZE_14},
+       body2: { fontFamily: "SourceSerifPro-Italic", fontSize: APP_FONT_SIZE_12},
    
        // Sub
        sub0: { fontFamily: "SourceSerifPro-LightItalic", fontSize: APP_FONT_SIZE_14},
@@ -326,18 +315,17 @@ const fonts = {
 
      lighter: {
        // Title
-       h0: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_40},
-       h1: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_32},
+       h0: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_32},
+       h1: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_28},
        h2: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_24},
        h3: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_22},
        h4: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_18},
        h5: { fontFamily: "SourceSerifPro-SemiBoldItalic", fontSize: APP_FONT_SIZE_16},
    
        // Body
-       body0: { fontFamily: "SourceSerifPro-LightItalic", fontSize: APP_FONT_SIZE_18},
-       body1: { fontFamily: "SourceSerifPro-LightItalic", fontSize: APP_FONT_SIZE_16},
-       body2: { fontFamily: "SourceSerifPro-LightItalic", fontSize: APP_FONT_SIZE_14},
-       body3: { fontFamily: "SourceSerifPro-LightItalic", fontSize: APP_FONT_SIZE_12},
+       body0: { fontFamily: "SourceSerifPro-LightItalic", fontSize: APP_FONT_SIZE_16},
+       body1: { fontFamily: "SourceSerifPro-LightItalic", fontSize: APP_FONT_SIZE_14},
+       body2: { fontFamily: "SourceSerifPro-LightItalic", fontSize: APP_FONT_SIZE_12},
    
        // Sub
        sub0: { fontFamily: "SourceSerifPro-ExtraLightItalic", fontSize: APP_FONT_SIZE_14},

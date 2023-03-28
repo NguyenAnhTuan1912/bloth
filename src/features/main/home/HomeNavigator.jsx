@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 
 import HomeScreen from './screens/home/HomeScreen';
+import BlogDetailScreen from 'share/screens/blog_detail/BlogDetailScreen';
 import AppHeader from 'share/components/app_header/AppHeader';
 
 import { NavigationProps, ScreenProps } from 'share/types/index.d';
@@ -28,6 +29,10 @@ export default function HomeNavigator({
       <HomeStack.Navigator initialRouteName='HomeScreen' screenOptions={{ header: props => <AppHeader {...props} />}}>
         <HomeStack.Screen name="HomeScreen" options={{ title: 'Home' }}>
           {props => <HomeScreen {...props} appNavigation={appNavigation} />}
+        </HomeStack.Screen>
+
+        <HomeStack.Screen name="BlogDetailScreen" options={{ title: 'Blog Detail' }}>
+          {props => <BlogDetailScreen {...props} appNavigation={appNavigation} />}
         </HomeStack.Screen>
       </HomeStack.Navigator>
     </NavigationContainer>

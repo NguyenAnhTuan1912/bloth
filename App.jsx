@@ -3,6 +3,9 @@ import { StyleSheet, View, StatusBar, Platform } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+
+import { store } from 'redux/store';
 
 import { ThemeContext } from 'share/contexts/ThemeContext';
 
@@ -12,8 +15,11 @@ import AppNavigator from 'AppNavigator';
 import BlothTheme from 'styles/theme';
 import CustomStatusBar from 'share/components/custom_status_bar/CustomStatusBar';
 import SplashScreen from 'share/screens/SplashScreen';
-import AppText from 'share/components/app_text/AppText';
 
+// Cofig custom fonts cho app.
+// Hiện tại thì có 2 fonts: Montserrat và SourceSerifPro.
+// Montserrat dùng làm font chữ thường.
+// SourceSerifPro dùng làm font cho title của blog.
 const customFonts = {
   'Montserrat-Black': require('./assets/fonts/montserrat/Montserrat-Black.ttf'),
     'Montserrat-BlackItalic': require('./assets/fonts/montserrat/Montserrat-BlackItalic.ttf'),
@@ -74,24 +80,26 @@ export default function App() {
   }
 
   return (
-    <PaperProvider theme={BlothTheme[theme]}>
-      <ThemeContext.Provider value={{ currentTheme: theme, setCurrentTheme: setTheme }}>
-        <View style={styles.container}>
-          <CustomStatusBar
-            theme={theme}
-            platform={Platform.OS}
-            backgroundColor={BlothTheme[theme].colors.background}
-          />
+    <Provider store={store}>
+      <PaperProvider theme={BlothTheme[theme]}>
+        <ThemeContext.Provider value={{ currentTheme: theme, setCurrentTheme: setTheme }}>
+          <View style={styles.container}>
+            <CustomStatusBar
+              theme={theme}
+              platform={Platform.OS}
+              backgroundColor={BlothTheme[theme].colors.background}
+            />
 
-          <NavigationContainer>
-            <AppNavigator />
-          </NavigationContainer>
+            <NavigationContainer>
+              <AppNavigator />
+            </NavigationContainer>
 
-          { isPending && <SplashScreen /> }
+            { isPending && <SplashScreen /> }
 
-        </View>
-      </ThemeContext.Provider>
-    </PaperProvider>
+          </View>
+        </ThemeContext.Provider>
+      </PaperProvider>
+    </Provider>
   );
 }
 
