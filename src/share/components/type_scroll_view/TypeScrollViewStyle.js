@@ -2,11 +2,12 @@ import { StyleSheet } from "react-native"
 
 import app_sp from "styles/spacing";
 import app_c from "styles/colors";
+import app_dms from "styles/dimension";
 
 const styles = StyleSheet.create({
   slider_container: {
     flex: 1,
-    width: "100%"
+    width: '100%'
   },
 
   slider_button_container: {
@@ -17,29 +18,12 @@ const styles = StyleSheet.create({
 
   line_index: {
     width: '100%',
-    height: 1,
-    backgroundColor: app_c.HEX.fourth
+    height: 1
   },
 
   slide_container: {
     flex: 1,
-    flexGrow: 1,
-    ...app_sp.mt_18
-  },
-
-  slide: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    opacity: 0,
-    zIndex: -1,
-    top: 0,
-    left: 0
-  },
-
-  slide_show: {
-    opacity: 1,
-    zIndex: 1
+    flexGrow: 1
   }
 });
 
