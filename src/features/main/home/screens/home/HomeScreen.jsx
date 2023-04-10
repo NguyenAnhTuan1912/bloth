@@ -26,7 +26,7 @@ import app_sp from 'styles/spacing'
  * @param {BlogListProps} props Props của component.
  * @return `ScrollView` có chứa các BlogCard
  */
-const LikedArchive = ({
+const NewestSlide = ({
   data = [],
   setData
 }) => {
@@ -64,7 +64,7 @@ const LikedArchive = ({
   );
 }
 
-const SavedArchive = ({
+const RecommendedSlide = ({
   data = [],
   setData
 }) => {
@@ -122,11 +122,11 @@ export default function HomeScreen({
   const BlogSlides = React.useMemo(() => [
     {
       name: "Newest",
-      RenderComponent: withState(LikedArchive)
+      RenderComponent: withState(NewestSlide)
     },
     {
       name: "Recommeded",
-      RenderComponent: withState(SavedArchive)
+      RenderComponent: withState(RecommendedSlide)
     }
   ], []);
 
@@ -137,7 +137,7 @@ export default function HomeScreen({
       <AppTabSlider>
         {
           BlogSlides.map(BlogSlide => (
-            <AppTabSlider.Slide name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
+            <AppTabSlider.Child name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
           ))
         }
       </AppTabSlider>

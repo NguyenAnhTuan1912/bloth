@@ -69,15 +69,17 @@ export default function ProfileScreen() {
         {/* introdution */}
         <View style={{
           borderTopWidth: 1,
-          borderTopColor: theme.colors.outlineVariant
+          borderTopColor: theme.colors.outlineVariant,
+          ...app_sp.pv_12,
+          ...app_sp.ph_18
         }}>
-           <View style={styles.listaboutUs}>
+           <View>
              <View>
-                <AppText font='h5' style = {styles.aboutTitle} color={theme.colors.onBackground}>Introduction</AppText>
+                <AppText font='h5' color={theme.colors.onBackground}>Introduction</AppText>
                 <AppText style = {styles.aboutCaption} color={theme.colors.onBackground}>Xin chào, mình là Tuấn, hiện tại mình dang là Software Engineer của Google, mình mở ra Blog này để chia sẻ cho các bạn mới kiến thức về ngành xây dựng và phát triển phần mềm</AppText>
               </View>
               <View>
-                <AppText font='h5' style = {styles.aboutTitle} color={theme.colors.onBackground}>Link</AppText> 
+                <AppText font='h5' color={theme.colors.onBackground}>Link</AppText> 
                 <View style = {styles.linkItem}>
                 <Avatar.Image 
                   source={{

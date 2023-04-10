@@ -177,7 +177,7 @@ export default function ArchiveScreen({
       <AppTabSlider>
         {
           BlogSlides.map(BlogSlide => (
-            <AppTabSlider.Slide name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
+            <AppTabSlider.Child name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
           ))
         }
       </AppTabSlider>

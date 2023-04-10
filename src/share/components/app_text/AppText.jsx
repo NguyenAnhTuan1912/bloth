@@ -37,7 +37,7 @@ const AppText = ({
   fontFamily = 'Montserrat',
   fontStyle = 'normal',
   weight = 'normal',
-  font = 'body2',
+  font = 'body0',
   color,
   hyperLink,
   toScreen = { screenName: "", params: {} },
@@ -49,7 +49,7 @@ const AppText = ({
   let textStyle = React.useMemo(() => (
     {
       ...app_typo.fonts[fontFamily][fontStyle][weight][font],
-      color: color ? color : theme.colors.onBackground
+      color: color ? color : theme.colors.onBackground,
     }
   ), [fontStyle, weight, font, color, theme]);
 

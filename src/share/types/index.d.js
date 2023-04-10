@@ -1,3 +1,8 @@
+import {
+  StyleProp,
+  ViewProps,
+  ViewStyle,
+} from 'react-native'
 import { NavigationContainer, RouteProp, ParamListBase, NavigationProp } from '@react-navigation/native'
 
 /**
@@ -9,6 +14,14 @@ import { NavigationContainer, RouteProp, ParamListBase, NavigationProp } from '@
 /**
  * @typedef ScreenProps
  * @property {NavigationProp<T>} appNavigation
+ */
+
+/**
+ * @typedef {ViewProps} ViewProps Các properties của `View`.
+ */
+
+/**
+ * @typedef {StyleProp<ViewStyle>} ViewStyles Các properties của View Style.
  */
 
 /**

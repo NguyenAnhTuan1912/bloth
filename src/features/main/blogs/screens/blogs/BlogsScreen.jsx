@@ -38,7 +38,7 @@ const BlogListWithOutState = ({
   setData
 }) => {
   // Dùng useSelector để access và state.blog.blogsBrief.
-  const blogsBrief = useSelector(state => { console.log(state); return state.blogsBrief });
+  const blogsBrief = useSelector(state => { return state.blogsBrief });
   // Thêm dispatch ở đây.
   const dispatch = useDispatch();
 
@@ -47,7 +47,6 @@ const BlogListWithOutState = ({
     FunctionsUtility
     .asyncTask(2000)
     .then(message => {
-      console.log(message);
       dispatch(getBlogsBrief())
       setData(blogsBrief);
     })
@@ -106,7 +105,7 @@ export default function BlogsScreen({
       <AppTabSlider>
         {
           BlogSlides.map(BlogSlide => (
-            <AppTabSlider.Slide name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
+            <AppTabSlider.Child name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
           ))
         }
       </AppTabSlider>
