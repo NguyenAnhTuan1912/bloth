@@ -10,11 +10,10 @@ import { getBlogsBrief } from 'redux/blog/blogSlice'
 
 import FunctionsUtility from 'utilities/functions'
 
-import { Button, useTheme } from 'react-native-paper'
+import { useTheme } from 'react-native-paper'
 
 import withState from 'share/hocs/withState'
 
-import AppText from 'share/components/app_text/AppText'
 import BlogCard from 'share/components/blog_card/BlogCard'
 import BlogCardSkeleton from 'share/components/blog_card/BlogCardSkeleton'
 
