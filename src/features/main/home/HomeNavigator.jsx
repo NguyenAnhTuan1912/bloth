@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 
@@ -24,17 +24,27 @@ export default function HomeNavigator({
   navigation,
   appNavigation
 }) {
+  const theme = useTheme();
+  console.log("HOME NAVIGATOR RENDER");
   return (
-    <NavigationContainer independent>
-      <HomeStack.Navigator initialRouteName='HomeScreen' screenOptions={{ header: props => <AppHeader {...props} />}}>
-        <HomeStack.Screen name="HomeScreen" options={{ title: 'Home' }}>
-          {props => <HomeScreen {...props} appNavigation={appNavigation} />}
-        </HomeStack.Screen>
+    <HomeStack.Navigator 
+      initialRouteName='HomeScreen' 
+      screenOptions={{ 
+        header: props => <AppHeader {...props} />,
+        contentStyle: { backgroundColor: theme.colors.background }
+      }}
+    >
+      <HomeStack.Screen 
+        name="HomeScreen"
+        options={{ title: 'Home' }}
+        component={HomeScreen}
+      />
 
-        <HomeStack.Screen name="BlogDetailScreen" options={{ title: 'Blog Detail' }}>
-          {props => <BlogDetailScreen {...props} appNavigation={appNavigation} />}
-        </HomeStack.Screen>
-      </HomeStack.Navigator>
-    </NavigationContainer>
+      <HomeStack.Screen 
+        name="BlogDetailScreen"
+        options={{ title: 'Blog Detail' }}
+        component={BlogDetailScreen}
+      />
+    </HomeStack.Navigator>
   )
 }

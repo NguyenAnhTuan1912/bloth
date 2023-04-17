@@ -10,14 +10,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...app_sp.ph_18
   },
-  input_up: {
-    height: 40,
-    width: '100%',
-    marginTop: 5,
-    padding: 5,
-    ...app_sh.rounded_8
-  }, 
 
+  input: {
+    width: '100%',
+    ...app_sh.rounded_8
+  },
+
+  input_48per: {
+    width: "48%"
+  },
+  
   lf_name: {
     width: '100%',
     flexDirection: 'row',
@@ -38,7 +40,13 @@ const styles = StyleSheet.create({
     marginTop: 5,
     padding: 5,
     ...app_sh.rounded_8
-  }
+  },
+
+  fl_gu: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
 
 export default styles

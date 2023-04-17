@@ -1,6 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import blogReducer from './blog/blogSlice';
+import userReducer from './user/userSlice';
 
 // Slice chỉ là các file setup các reducers trong app.
 // "Slice là một tập hợp các actions và logic trong một reducer".
@@ -38,8 +39,13 @@ import blogReducer from './blog/blogSlice';
  * }
  * ...
  */
+const rootReducer = combineReducers({
+  blog: blogReducer,
+  user: userReducer
+});
+
 export const store = configureStore({
-  reducer: blogReducer
+  reducer: rootReducer
 });
 
 /*
