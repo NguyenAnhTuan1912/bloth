@@ -11,23 +11,25 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
   },
 
+  td: {
+    justifyContent: 'center',
+    alignItems: "center",
+    width: "100%",
+  },
+
   text: {
     textAlign:'center',
   },
 
   input: {
-    height: 40,
     width: '100%',
-    marginTop: 5,
-    padding: 10,
     ...app_sh.rounded_8
   },
 
   fl_gu: {
-    width: '50%',
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    
   },
 
   logo: {

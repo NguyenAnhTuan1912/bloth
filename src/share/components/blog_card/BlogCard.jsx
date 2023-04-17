@@ -26,6 +26,7 @@ import { BlogCardProps } from 'share/types/index.d';
 export default function BlogCard(props) {
     const navigation = useNavigation();
     const theme = useTheme();
+    const fullName = props.author.lastName + " " + props.author.firstName;
 
     return ( 
       <View style={[styles.blog_container, {
@@ -49,7 +50,7 @@ export default function BlogCard(props) {
         <View style={{ flex: 1 , width: '100%'}}>
           <View style={styles.blog_author_info_container}>
             {
-              !props.authorImage
+              !props.author.presentationImage
               ? (
                 <Ionicons size = {18} name="person-circle-outline" color={theme.colors.onBackground} />
               )
@@ -62,12 +63,14 @@ export default function BlogCard(props) {
                 />
               )
             }
-            <AppText font="sub1" style={app_sp.ms_6} >{props.authorName}</AppText>
+            <AppText font="sub1" style={app_sp.ms_6} >{fullName}</AppText>
           </View >
 
           <View style={{flex: 1}}>
           <AppText numberOfLines={3} font="h5" onPress={() => { navigation.push("BlogDetailScreen") }}  >{props.title}</AppText>
-          <AppText font="body3" >{DateTimeUtility.getShortDateString(props.createdAt)} - {DateTimeUtility.toMinute(props.readTime)} min read.</AppText>
+          <AppText font="body2" >
+            {DateTimeUtility.getShortDateString(new Date(props.createAt).getTime())} - {DateTimeUtility.toMinute(new Date(props.readTime).getTime())} min read.
+          </AppText>
           </View>
         </View>
 

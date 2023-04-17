@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-import { NavigationContainer, RouteProp, ParamListBase, NavigationProp } from '@react-navigation/native'
+import { NavigationContainer, RouteProp, ParamListBase, NavigationProp, useTheme } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -19,13 +19,10 @@ const AuthenticationTab = createBottomTabNavigator();
  * @param {NavigationProps} props Prop của component.
  * @returns 
  */
-export default function AuthenticationNavigator({
-  route,
-  navigation
-}) {
-
+export default function AuthenticationNavigator() {
+  const theme = useTheme();
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
       <NavigationContainer independent>
         <AuthenticationTab.Navigator
           initialRouteName='SigninScreen'
@@ -37,15 +34,13 @@ export default function AuthenticationNavigator({
         >
           <AuthenticationTab.Screen
             name='SigninScreen'
-          >
-            { props => <SigninScreen {...props} appNavigation={navigation} /> }
-          </AuthenticationTab.Screen>
+            component={SigninScreen}
+          />
 
           <AuthenticationTab.Screen
             name='SignupScreen'
-          >
-            { props => <SignupScreen {...props} appNavigation={navigation} /> }
-          </AuthenticationTab.Screen>
+            component={SignupScreen}
+          />
         </AuthenticationTab.Navigator>
       </NavigationContainer>
     </SafeAreaView>

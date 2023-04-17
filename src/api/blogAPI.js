@@ -12,7 +12,7 @@ const blogBaseURL = "/blog";
  * @param {AxiosInstance} axiosInstance Một custom axios function đã config từ trước.
  * @returns {(options: AxiosRequestConfig) => Promise<AxiosResponse>}
  */
-export function configGetBlogAsyncFunc(axiosInstance) {
+export function configureGetBlogAsyncFunc(axiosInstance) {
   /**
    * Nhận vào các thuộc tính request config cho axios instance.
    * @param {AxiosRequestConfig} requestOptions Các thuộc tính cấu hình cho request.
@@ -35,7 +35,7 @@ export function configGetBlogAsyncFunc(axiosInstance) {
  * @param {AxiosInstance} axiosInstance Một custom axios function đã config từ trước.
  * @returns {(options: AxiosRequestConfig) => Promise<AxiosResponse>}
  */
-export function configGetBlogsAsyncFunc(axiosInstance) {
+export function configureGetBlogsAsyncFunc(axiosInstance) {
   /**
    * Nhận vào các thuộc tính request config cho axios instance.
    * @param {AxiosRequestConfig} requestOptions Các thuộc tính cấu hình cho request.
@@ -45,8 +45,9 @@ export function configGetBlogsAsyncFunc(axiosInstance) {
    * // Usage
    * const blogDetail = await getBlogsAsync({ params: { limit: 10 } });
    */
-  return async function getBlogAsync(requestOptions) {
+  return async function getBlogsAsync(requestOptions) {
     let url = blogBaseURL + "/get_multiple";
+    console.log("OPTIONS: ", requestOptions);
     return await axiosInstance.get(url, requestOptions);
   }
 }
@@ -58,7 +59,7 @@ export function configGetBlogsAsyncFunc(axiosInstance) {
  * @param {AxiosInstance} axiosInstance Một custom axios function đã config từ trước.
  * @returns {(options: AxiosRequestConfig) => Promise<AxiosResponse>}
  */
-export function configCreateBlogAsyncFunc(axiosInstance) {
+export function configureCreateBlogAsyncFunc(axiosInstance) {
   /**
    * Nhận vào các thuộc tính request config cho axios instance.
    * @param {AxiosRequestConfig} requestOptions Các thuộc tính cấu hình cho request.
@@ -84,7 +85,7 @@ export function configCreateBlogAsyncFunc(axiosInstance) {
  * @param {AxiosInstance} axiosInstance Một custom axios function đã config từ trước.
  * @returns {(options: AxiosRequestConfig) => Promise<AxiosResponse>}
  */
-export function configDeleteBlogAsyncFunc(axiosInstance) {
+export function configureDeleteBlogAsyncFunc(axiosInstance) {
   /**
    * Nhận vào các thuộc tính request config cho axios instance.
    * @param {AxiosRequestConfig} requestOptions Các thuộc tính cấu hình cho request.

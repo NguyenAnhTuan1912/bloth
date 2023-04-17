@@ -1,6 +1,10 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React, { useContext } from 'react'
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { useRole } from 'share/hooks/useRole';
+
 import { ThemeContext } from 'share/contexts/ThemeContext';
 
 import { Button, useTheme, IconButton, List, RadioButton } from 'react-native-paper'
@@ -20,11 +24,21 @@ import { NavigationProps } from 'share/types/index.d';
 export default function SettingsScreen() {
   const theme = useTheme();
   const { currentTheme, setCurrentTheme } = React.useContext(ThemeContext);
+  const { userRole, dispatchUserRoleUpdate } = useRole();
 
   const typeOfTheme = {
     light: 'light',
     dark: 'dark'
   }
+
+  const handleSignout = React.useCallback(async () => {
+    if(userRole === "GUEST") dispatchUserRoleUpdate("")
+    else {
+      let idToken = await AsyncStorage.getItem("id-token");
+      if(idToken) await AsyncStorage.removeItem("id-token");
+      dispatchUserRoleUpdate("")
+    }
+  }, [])
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -44,6 +58,13 @@ export default function SettingsScreen() {
           )}
         />
       </List.Accordion>
+
+      <Button
+        mode="contained-tonal"
+        onPress={handleSignout}
+      >
+        Sign out
+      </Button>
     </View>
   )
 }

@@ -1,7 +1,15 @@
 import { View, ScrollView } from 'react-native'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+
+import { 
+  userDetailSelector
+} from 'app_redux/user/userSlice'
 
 import FunctionsUtility from 'utilities/functions'
+import StringUtility from 'utilities/string'
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { Button, useTheme, Avatar, Title, IconButton} from 'react-native-paper'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -23,24 +31,15 @@ import { BlogCardDataCollection } from 'data/BlogCardData'
  * @returns 
  */
 export default function ProfileScreen() {
+  const theme = useTheme();
   /**
    * @type {[Array<BlogCardProps>, React.Dispatch<React.SetStateAction<BlogCardProps[]>>]}
    */
   const [blogCards, setBlogCards] = React.useState([]);
-  const theme = useTheme();
-  let userName = "Nguyễn Anh Tuấn";
-
-  React.useEffect(() => {
-    FunctionsUtility
-    .asyncTask(2000)
-    .then(message => {
-      console.log(message);
-      setBlogCards(BlogCardDataCollection.filter(data => data.authorName === userName))
-    })
-  }, [userName])
+  const user = useSelector(userDetailSelector);
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    user && <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollview}>
         <View style={styles.user}>
           <View style={styles.userInfo}>
@@ -48,11 +47,11 @@ export default function ProfileScreen() {
               source={{
                 uri : 'https://bom.so/zAbBqX'
               }}
-              size= {60}
+              size= {120}
             />
-            <View >
-              <AppText font='h2' color={theme.colors.onBackground}>{userName}</AppText>
-              <AppText font='sub1' color={theme.colors.onBackground}>Software Engineer</AppText>
+            <View style={app_sp.mt_12}>
+              <AppText font='h2' color={theme.colors.onBackground}>{user.lastName + " " + user.firstName}</AppText>
+              <AppText font='sub1' color={theme.colors.onBackground}>{StringUtility.toTitleCase(user.career)}</AppText>
             </View>
           </View>
           <View style = {styles.profileBtn}>
@@ -76,32 +75,7 @@ export default function ProfileScreen() {
            <View>
              <View>
                 <AppText font='h5' color={theme.colors.onBackground}>Introduction</AppText>
-                <AppText style = {styles.aboutCaption} color={theme.colors.onBackground}>Xin chào, mình là Tuấn, hiện tại mình dang là Software Engineer của Google, mình mở ra Blog này để chia sẻ cho các bạn mới kiến thức về ngành xây dựng và phát triển phần mềm</AppText>
-              </View>
-              <View>
-                <AppText font='h5' color={theme.colors.onBackground}>Link</AppText> 
-                <View style = {styles.linkItem}>
-                <Avatar.Image 
-                  source={{
-                    uri : 'https://bom.so/lR0Mw6'
-                  }}
-                  size= {18}
-                  style = {styles.linkIcon}
-                />
-                  <AppText style = {{...styles.aboutCaption, color: 'red', ...app_sp.ms_6 }} hyperLink="https://github.com/">mygithub.com</AppText>
-                </View>
-  
-                <View style = {styles.linkItem}>
-                <Avatar.Image 
-                  source={{
-                    uri : 'https://bom.so/0zPgt2'
-                  }}
-                  size= {18}
-                  style = {styles.linkIcon}
-                />
-                  <AppText style = {{...styles.aboutCaption, color: 'red', ...app_sp.ms_6 }} hyperLink="https://facebook.com">mywebsite.com</AppText>
-                </View>
-                
+                <AppText style={styles.aboutCaption} color={theme.colors.onBackground}>{user.bio}</AppText>
               </View>
            </View>
         </View>

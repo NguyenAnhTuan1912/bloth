@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { View, TouchableOpacity, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import React from 'react'
 
@@ -23,80 +23,72 @@ const MainTab = createBottomTabNavigator();
  * @param {NavigationProps} props Props của component.
  * @returns 
  */
-export default function MainNavigator({
-  route,
-  navigation
-}) {
+export default function MainNavigator() {
   const theme = useTheme();
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <NavigationContainer independent>
-        <MainTab.Navigator
-          initialRouteName='HomeNavigator'
-          screenOptions={{
-            headerShown: false,
-            tabBarShowLabel: false,
-            tabBarStyle: {
-              backgroundColor: theme.colors.background,
-              borderTopColor: theme.colors.outlineVariant,
-              borderTopWidth: 1,
-            }
+    <SafeAreaView style={{flex: 1, backgroundColor: 'transparent'}}>
+      <MainTab.Navigator
+        initialRouteName='HomeNavigator'
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            backgroundColor: theme.colors.background,
+            borderTopColor: theme.colors.outlineVariant,
+            borderTopWidth: 1,
+          },
+          contentStyle: { backgroundColor: theme.colors.background }
+        }}
+      >
+        {/* Home Navigator */}
+        <MainTab.Screen
+          name="HomeNavigator"
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({focused, size, color}) => (
+              <Ionicons name={focused ? 'home' : 'home-outline'} color={theme.colors.onBackground} size={size} />
+            )
           }}
-        >
-          {/* Home Navigator */}
-          <MainTab.Screen
-            name="HomeNavigator"
-            options={{
-              tabBarLabel: 'Home',
-              tabBarIcon: ({focused, size, color}) => (
-                <Ionicons name={focused ? 'home' : 'home-outline'} color={theme.colors.onBackground} size={size} />
-              )
-            }}
-          >
-            { props => <HomeNavigator {...props} appNavigation={navigation} /> }
-          </MainTab.Screen>
+          component={HomeNavigator}
+        />
 
-          {/* Blogs Navigator */}
-          <MainTab.Screen
-            name="BlogsNavigator"
-            options={{
-              tabBarLabel: 'Blogs',
-              tabBarIcon: ({focused, size, color}) => (
-                <Ionicons name={focused ? 'newspaper' : 'newspaper-outline'} color={theme.colors.onBackground} size={size} />
-              )
-            }}
-          >
-            { props => <BlogsNavigator /> }
-          </MainTab.Screen>
+        {/* Blogs Navigator */}
+        <MainTab.Screen
+          name="BlogsNavigator"
+          options={{
+            tabBarLabel: 'Blogs',
+            tabBarIcon: ({focused, size, color}) => (
+              <Ionicons name={focused ? 'newspaper' : 'newspaper-outline'} color={theme.colors.onBackground} size={size} />
+            )
+          }}
+          component={BlogsNavigator}
+        />
 
-          {/* Archive Navigator */}
-          <MainTab.Screen
-            name="ArchiveNavigator"
-            options={{
-              tabBarLabel: 'Archive',
-              tabBarIcon: ({focused, size, color}) => (
-                <Ionicons name={focused ? 'archive' : 'archive-outline'} color={theme.colors.onBackground} size={size} />
-              )
-            }}
-          >
-            { props => <ArchiveNavigator {...props} /> }
-          </MainTab.Screen>
+        {/* Archive Navigator */}
+        <MainTab.Screen
+          name="ArchiveNavigator"
+          options={{
+            tabBarLabel: 'Archive',
+            tabBarIcon: ({focused, size, color}) => (
+              <Ionicons name={focused ? 'archive' : 'archive-outline'} color={theme.colors.onBackground} size={size} />
+            )
+          }}
+          component={ArchiveNavigator}
+        />
 
-          {/* Profile Navigator */}
-          <MainTab.Screen
-            name="ProfileNavigator"
-            options={{
-              tabBarLabel: 'Profile',
-              tabBarIcon: ({focused, size, color}) => (
-                <Ionicons name={focused ? 'person-circle' : 'person-circle-outline'} color={theme.colors.onBackground} size={size} />
-              )
-            }}
-          >
-            { props => <ProfileNavigator /> }
-          </MainTab.Screen>
-        </MainTab.Navigator>
-      </NavigationContainer>
+        {/* Profile Navigator */}
+        <MainTab.Screen
+          name="ProfileNavigator"
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({focused, size, color}) => (
+              <Ionicons name={focused ? 'person-circle' : 'person-circle-outline'} color={theme.colors.onBackground} size={size} />
+            )
+          }}
+          component={ProfileNavigator}
+        />
+      </MainTab.Navigator>
     </SafeAreaView>
   )
 }

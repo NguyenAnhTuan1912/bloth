@@ -6,13 +6,18 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // Import các actions trong BlogSlice tại đây
-import { getBlogsBrief } from 'redux/blog/blogSlice'
+import { 
+  fetchBriefBlogByType,
+  briefBlogsSelector,
+  createBriefBlog
+} from 'app_redux/blog/blogSlice'
 
 import FunctionsUtility from 'utilities/functions'
 
-import { useTheme } from 'react-native-paper'
+import { userDetailSelector } from 'app_redux/user/userSlice'
 
-import withState from 'share/hocs/withState'
+import { useRole } from 'share/hooks/useRole'
+import { useTheme } from 'react-native-paper'
 
 import BlogCard from 'share/components/blog_card/BlogCard'
 import BlogCardSkeleton from 'share/components/blog_card/BlogCardSkeleton'
@@ -22,39 +27,28 @@ import AppTabSlider from 'share/components/app_tab_slider/AppTabSlider'
 
 import { NavigationProps, BlogCardProps } from 'share/types/index.d'
 
-/**
- * @typedef BlogListProps
- * @property {any[]} data
- * @property {React.Dispatch<React.SetStateAction<any[]>>} setData
- */
-
-/**
- * @param {BlogListProps} props Props của component.
- * @return `ScrollView` có chứa các BlogCard
- */
-const BlogListWithOutState = ({
-  data = [],
-  setData
+const BlogBriefView = ({
+  typeOfBlog
 }) => {
   // Dùng useSelector để access và state.blog.blogsBrief.
-  const blogsBrief = useSelector(state => { return state.blogsBrief });
+  const blogsBrief = useSelector(state => briefBlogsSelector(state, typeOfBlog));
   // Thêm dispatch ở đây.
   const dispatch = useDispatch();
+  const fields = 'title;image;createAt;isRecommended;type;author;readTime';
 
-  // Tạm thời chưa gọi dữ liệu về server nên t chỉ setup như thế này thôi.
   React.useEffect(() => {
-    FunctionsUtility
-    .asyncTask(2000)
-    .then(message => {
-      dispatch(getBlogsBrief())
-      setData(blogsBrief);
-    })
+    if(!blogsBrief) {
+      dispatch(createBriefBlog(typeOfBlog));
+      dispatch(fetchBriefBlogByType({typeOfBlog, fields}))
+    } else if(blogsBrief.data.length === 0) {
+      dispatch(fetchBriefBlogByType({typeOfBlog, fields}))
+    }
   }, [])
 
   return (
     <View style={{width: '100%'}}>
       {
-        blogsBrief.length === 0
+        !blogsBrief
         ? (
           <ScrollView>
             <BlogCardSkeleton />
@@ -65,16 +59,22 @@ const BlogListWithOutState = ({
         )
         : (
           <FlatList
-            data={blogsBrief}
+            data={blogsBrief.data}
             renderItem={({ item }) => (
               <BlogCard {...item} />
             )}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item._id}
           />
         )
       }
     </View>
-  );
+  )
+}
+
+const withTypeOfBlog = (typeOfBlog) => {
+  return function() {
+    return <BlogBriefView typeOfBlog={typeOfBlog} />
+  }
 }
 
 /**
@@ -82,22 +82,32 @@ const BlogListWithOutState = ({
  * @param {NavigationProps} props - Props của component.
  * @returns 
  */
-export default function BlogsScreen({
-  route,
-  navigation
-}) {
+export default function BlogsScreen() {
   const theme = useTheme();
+  const { userRole } = useRole();
+  const user = useSelector(userDetailSelector);
 
-  const BlogSlides = React.useMemo(() => [
-    {
-      name: "For you",
-      RenderComponent: withState(BlogListWithOutState)
-    },
-    {
-      name: "life",
-      RenderComponent: withState(BlogListWithOutState)
-    },
-  ], []);
+  const BlogSlides = React.useMemo(() => {
+    if(userRole === "GUEST") {
+      return ([
+        {
+          name: "all",
+          RenderComponent: withTypeOfBlog("all")
+        },
+        {
+          name: "recommended",
+          RenderComponent: withTypeOfBlog("recommended")
+        },
+      ])
+    } else {
+      return user.interestedTypeOfBlogs.map(insterestedType => (
+        {
+          name: insterestedType,
+          RenderComponent: withTypeOfBlog(insterestedType)
+        }
+      ))
+    }
+  }, [userRole]);
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>

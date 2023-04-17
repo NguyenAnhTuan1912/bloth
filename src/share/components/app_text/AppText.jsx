@@ -37,7 +37,7 @@ const AppText = ({
   fontFamily = 'Montserrat',
   fontStyle = 'normal',
   weight = 'normal',
-  font = 'body0',
+  font = 'body1',
   color,
   hyperLink,
   toScreen = { screenName: "", params: {} },

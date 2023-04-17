@@ -151,10 +151,7 @@ const LibraryArchive = ({
  * @param {NavigationProps} props - Props của component.
  * @returns 
  */
-export default function ArchiveScreen({
-  route,
-  navigation
-}) {
+export default function ArchiveScreen() {
   const theme = useTheme();
 
   const BlogSlides = React.useMemo(() => [
