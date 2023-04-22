@@ -5,14 +5,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTheme } from 'react-native-paper';
 
-import { useRole } from 'share/hooks/useRole';
+import { useRole } from 'share/hooks/useUserSlice';
 
 import ArchiveScreen from './screens/archive/ArchiveScreen';
 import AppHeader from 'share/components/app_header/AppHeader';
 
-import { NavigationProps, ScreenProps } from 'share/types/index.d';
-import Unauthenticated from 'share/screens/Unauthenticated';
+import UnauthenticatedScreen from 'share/screens/unauthenticated/UnauthenticatedScreen';
 import BlogDetailScreen from 'share/screens/blog_detail/BlogDetailScreen';
+
+import { NavigationProps, ScreenProps } from 'share/types/index.d';
 
 const ArchiveStack = createNativeStackNavigator();
 
@@ -40,7 +41,7 @@ export default function ArchiveNavigator() {
           <ArchiveStack.Screen
             name="ArchieveScreen"
             options={{ title: 'Archive' }}
-            component={Unauthenticated}
+            component={UnauthenticatedScreen}
           />
         )
         : (

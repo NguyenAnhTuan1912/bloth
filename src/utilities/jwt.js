@@ -6,7 +6,12 @@ import { isExpired } from 'react-jwt';
  * @param {string} token Token được gửi từ server.
  */
 function isTokenExpired(token) {
-  return isExpired(token)
+  let decoded = jwt_decode(token);
+  if(decoded.exp < Date.now() / 1000) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**

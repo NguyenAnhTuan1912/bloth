@@ -5,77 +5,22 @@ import React from 'react'
 // useDispatch dùng để 'truyền' các function reducer (action) về store để nó xử lý và lấy state đã setup ở store.
 import { useSelector, useDispatch } from 'react-redux'
 
-// Import các actions trong BlogSlice tại đây
-import { 
-  fetchBriefBlogByType,
-  briefBlogsSelector,
-  createBriefBlog
-} from 'app_redux/blog/blogSlice'
-
 import FunctionsUtility from 'utilities/functions'
 
 import { userDetailSelector } from 'app_redux/user/userSlice'
 
-import { useRole } from 'share/hooks/useRole'
+import { useRole } from 'share/hooks/useUserSlice'
 import { useTheme } from 'react-native-paper'
 
+import AppText from 'share/components/app_text/AppText'
 import BlogCard from 'share/components/blog_card/BlogCard'
 import BlogCardSkeleton from 'share/components/blog_card/BlogCardSkeleton'
+import BlogCardList from 'share/components/blog_card_list/BlogCardList'
 
 import styles from './BlogsScreenStyles'
 import AppTabSlider from 'share/components/app_tab_slider/AppTabSlider'
 
 import { NavigationProps, BlogCardProps } from 'share/types/index.d'
-
-const BlogBriefView = ({
-  typeOfBlog
-}) => {
-  // Dùng useSelector để access và state.blog.blogsBrief.
-  const blogsBrief = useSelector(state => briefBlogsSelector(state, typeOfBlog));
-  // Thêm dispatch ở đây.
-  const dispatch = useDispatch();
-  const fields = 'title;image;createAt;isRecommended;type;author;readTime';
-
-  React.useEffect(() => {
-    if(!blogsBrief) {
-      dispatch(createBriefBlog(typeOfBlog));
-      dispatch(fetchBriefBlogByType({typeOfBlog, fields}))
-    } else if(blogsBrief.data.length === 0) {
-      dispatch(fetchBriefBlogByType({typeOfBlog, fields}))
-    }
-  }, [])
-
-  return (
-    <View style={{width: '100%'}}>
-      {
-        !blogsBrief
-        ? (
-          <ScrollView>
-            <BlogCardSkeleton />
-            <BlogCardSkeleton />
-            <BlogCardSkeleton />
-            <BlogCardSkeleton />
-          </ScrollView>
-        )
-        : (
-          <FlatList
-            data={blogsBrief.data}
-            renderItem={({ item }) => (
-              <BlogCard {...item} />
-            )}
-            keyExtractor={item => item._id}
-          />
-        )
-      }
-    </View>
-  )
-}
-
-const withTypeOfBlog = (typeOfBlog) => {
-  return function() {
-    return <BlogBriefView typeOfBlog={typeOfBlog} />
-  }
-}
 
 /**
  * Đây là screen Sign in
@@ -92,32 +37,43 @@ export default function BlogsScreen() {
       return ([
         {
           name: "all",
-          RenderComponent: withTypeOfBlog("all")
+          RenderComponent: () => <BlogCardList typeOfBlog="all" />
         },
         {
           name: "recommended",
-          RenderComponent: withTypeOfBlog("recommended")
+          RenderComponent: () => <BlogCardList typeOfBlog="recommended" />
         },
       ])
     } else {
-      return user.interestedTypeOfBlogs.map(insterestedType => (
+      let actualUserBlogType = ["all", ...user.interestedTypeOfBlogs]
+      return actualUserBlogType.map(insterestedType => (
         {
           name: insterestedType,
-          RenderComponent: withTypeOfBlog(insterestedType)
+          RenderComponent: () => <BlogCardList typeOfBlog={insterestedType} />
         }
       ))
     }
-  }, [userRole]);
+  }, [userRole, user.interestedTypeOfBlogs]);
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <AppTabSlider>
-        {
-          BlogSlides.map(BlogSlide => (
-            <AppTabSlider.Child name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
-          ))
-        }
-      </AppTabSlider>
+      {
+        BlogSlides.length === 0
+        ? (
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <AppText style={{textAlign: 'center'}}>You haven't interested in any blogs.</AppText>
+          </View>
+        )
+        : (
+          <AppTabSlider>
+            {
+              BlogSlides.map(BlogSlide => (
+                <AppTabSlider.Child name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
+              ))
+            }
+          </AppTabSlider>
+        )
+      }
     </View>
   )
 }

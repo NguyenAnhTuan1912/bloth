@@ -27,7 +27,7 @@ export default function MainNavigator() {
   const theme = useTheme();
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'transparent'}}>
+    <SafeAreaView style={{flex: 1}}>
       <MainTab.Navigator
         initialRouteName='HomeNavigator'
         screenOptions={{
@@ -37,9 +37,9 @@ export default function MainNavigator() {
             backgroundColor: theme.colors.background,
             borderTopColor: theme.colors.outlineVariant,
             borderTopWidth: 1,
-          },
-          contentStyle: { backgroundColor: theme.colors.background }
+          }
         }}
+        sceneContainerStyle={{backgroundColor: theme.colors.background}}
       >
         {/* Home Navigator */}
         <MainTab.Screen

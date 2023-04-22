@@ -24,18 +24,22 @@ import { BlogCardProps } from 'share/types/index.d';
  * @returns 
  */
 export default function BlogCard(props) {
-    const navigation = useNavigation();
-    const theme = useTheme();
-    const fullName = props.author.lastName + " " + props.author.firstName;
+  const navigation = useNavigation();
+  const theme = useTheme();
+  const fullName = props.author.lastName + " " + props.author.firstName;
 
-    return ( 
-      <View style={[styles.blog_container, {
-        borderBottomWidth: 1,
-        borderBottomColor: theme.colors.outlineVariant
-      }]}>
+  const handleOpenBlogDetails = () => {
+    navigation.push("BlogDetailScreen", { id: props._id })
+  }
+
+  return ( 
+    <View style={[styles.blog_container, {
+      borderBottomWidth: 1,
+      borderBottomColor: theme.colors.outlineVariant
+    }]}>
       {/* Image - Cột ảnh */}
       <View style={styles.blog_container_col}>
-        <Pressable onPress={() => { navigation.push("BlogDetailScreen") }}>
+        <Pressable onPress={handleOpenBlogDetails}>
           <Image
             source={{ uri: props.image }}
             style={styles.blog_image}
@@ -55,7 +59,7 @@ export default function BlogCard(props) {
                 <Ionicons size = {18} name="person-circle-outline" color={theme.colors.onBackground} />
               )
               : (
-                <Avatar.Image 
+                <Avatar.Image
                   source={{
                   uri : props.image
                   }}
@@ -67,7 +71,7 @@ export default function BlogCard(props) {
           </View >
 
           <View style={{flex: 1}}>
-          <AppText numberOfLines={3} font="h5" onPress={() => { navigation.push("BlogDetailScreen") }}  >{props.title}</AppText>
+          <AppText numberOfLines={3} font="h5" onPress={handleOpenBlogDetails}  >{props.title}</AppText>
           <AppText font="body2" >
             {DateTimeUtility.getShortDateString(new Date(props.createAt).getTime())} - {DateTimeUtility.toMinute(new Date(props.readTime).getTime())} min read.
           </AppText>
@@ -101,5 +105,5 @@ export default function BlogCard(props) {
         </View>
       </View>
     </View >
-     );
+  );
 }

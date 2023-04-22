@@ -53,15 +53,14 @@ const AppText = ({
     }
   ), [fontStyle, weight, font, color, theme]);
 
-  let textCompleteStyle = ComponentUtility.mergeStyle(props.style, textStyle);
+  let textCompleteStyle = ComponentUtility.mergeStyle(textStyle, props.style);
 
   // Sẽ thêm hàm validate url sau, tạm thời dùng điệu kiện hyperLink !== ''
   if(hyperLink && hyperLink !== '') {
-    textCompleteStyle = ComponentUtility.mergeStyle(props.style, { color: theme.colors.primary });
     return (
       <Text
         {...props}
-        style={textCompleteStyle}
+        style={[textCompleteStyle, { color: theme.colors.primary }]}
         onPress={() => Linking.openURL(hyperLink)}
       >{children}
       </Text>

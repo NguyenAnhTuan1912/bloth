@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import blogReducer from './blog/blogSlice';
 import userReducer from './user/userSlice';
+import manifoldSlice from "./manifold/manifoldSlice";
 
 // Slice chỉ là các file setup các reducers trong app.
 // "Slice là một tập hợp các actions và logic trong một reducer".
@@ -41,7 +42,8 @@ import userReducer from './user/userSlice';
  */
 const rootReducer = combineReducers({
   blog: blogReducer,
-  user: userReducer
+  user: userReducer,
+  manifold: manifoldSlice
 });
 
 export const store = configureStore({

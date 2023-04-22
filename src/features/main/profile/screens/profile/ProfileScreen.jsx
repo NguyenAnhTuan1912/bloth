@@ -44,8 +44,8 @@ export default function ProfileScreen() {
         <View style={styles.user}>
           <View style={styles.userInfo}>
             <Avatar.Image
-              source={{
-                uri : 'https://bom.so/zAbBqX'
+              source={!user.presentationImage ? {} : {
+                uri : user.presentationImage
               }}
               size= {120}
             />
@@ -64,7 +64,31 @@ export default function ProfileScreen() {
             />
           </View>
         </View>
-  
+        {/* Remind */}
+        {
+          !user.activedEmail && (
+            <View style={[
+                app_sp.ph_18,
+                app_sp.pv_10,
+                { 
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderTopColor: theme.colors.outlineVariant,
+                  borderTopWidth: 1
+                }
+              ]}
+            >
+              <AppText color={theme.colors.primary}>Active your account here</AppText>
+              <Button
+                onPress={() => {}}
+              >
+                Active
+              </Button>
+            </View>
+          )
+        }
+
         {/* introdution */}
         <View style={{
           borderTopWidth: 1,
@@ -84,7 +108,7 @@ export default function ProfileScreen() {
           borderTopWidth: 1,
           borderTopColor: theme.colors.outlineVariant
         }}>
-            <AppText font='h5' style = {styles.blogHeader}>Your Blogs</AppText>
+            <AppText font='h5' style = {styles.blogHeader}>{user.firstName}'s Blogs</AppText>
 
             {/* blogCart */}
             <View style={{

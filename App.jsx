@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, StatusBar, Platform } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as PaperProvider, Snackbar } from 'react-native-paper';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 
@@ -15,6 +15,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import AppNavigator from 'AppNavigator';
 import BlothTheme from 'styles/theme';
 import CustomStatusBar from 'share/components/custom_status_bar/CustomStatusBar';
+import GlobalLoading from 'share/components/loading/GlobalLoading';
+import Nofitication from 'share/components/notification/Nofitication';
+
+import { configureStyleOfFTTS } from 'libs/mark-format/react-native';
 
 // Cofig custom fonts cho app.
 // Hiện tại thì có 2 fonts: Montserrat và SourceSerifPro.
@@ -54,18 +58,52 @@ const customFonts = {
     'SourceSerifPro-SemiBoldItalic': require('./assets/fonts/source_serif_pro/SourceSerifPro-SemiBoldItalic.ttf')
 }
 
+import app_typo from 'styles/typography'
+import app_sp from 'styles/spacing';
+
+const customStyles = {
+  "BOLD": {
+    fontFamily: "Montserrat-Bold",
+    fontWeight: "bold"
+  },
+  "ITALIC": {
+    fontFamily: "Montserrat-Italic",
+    fontStyle: "italic"
+  },
+  "BOLD&ITALIC": {
+    fontFamily: "Montserrat-BoldItalic"
+  },
+  "LIGHT&ITALIC": {
+    fontFamily: "Montserrat-LightItalic"
+  },
+  "HIGHLIGHT": {
+    color: "#191c1d",
+    paddingVertical: 4,
+    paddingHorizontal: 2,
+    backgroundColor: 'yellow'
+  },
+  "IMAGE": {
+    width: "100%",
+    aspectRatio: 16 / 9,
+    ...app_sp.mt_12
+  },
+  "HEADING_0": { ...app_typo.fonts.SourceSerifPro.normal.normal.h0 },
+  "HEADING_1": { ...app_typo.fonts.SourceSerifPro.normal.normal.h1 },
+  "HEADING_2": { ...app_typo.fonts.Montserrat.normal.normal.h2 },
+  "HEADING_3": { ...app_typo.fonts.Montserrat.normal.normal.h3 },
+  "HEADING_4": { ...app_typo.fonts.Montserrat.normal.normal.h4 },
+  "HEADING_5": { ...app_typo.fonts.Montserrat.normal.normal.h5 },
+  "SUB_0": { ...app_typo.fonts.Montserrat.normal.normal.sub0 },
+  "SUB_1": { ...app_typo.fonts.Montserrat.normal.normal.sub1 },
+}
+
+configureStyleOfFTTS(customStyles);
+
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts(customFonts);
   const [theme, setTheme] = React.useState('dark');
-  const MyTheme = React.useMemo(() => ({
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      background: BlothTheme[theme].colors.background
-    }
-  }), [theme]);
 
   console.log("Font loaded: ", fontsLoaded);
 
@@ -88,6 +126,9 @@ export default function App() {
               <AppNavigator />
             </NavigationContainer>
 
+            <GlobalLoading />
+            <Nofitication />
+
           </View>
         </ThemeContext.Provider>
       </PaperProvider>
@@ -98,6 +139,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
   },
+
+  global_loading: {
+    position: 'absolute',
+    flex: 1,
+    top: 0,
+
+  }
 });

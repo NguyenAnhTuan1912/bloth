@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-import { useRole } from 'share/hooks/useRole';
+import { useRole } from 'share/hooks/useUserSlice';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -14,7 +14,7 @@ import ProfileScreen from './screens/profile/ProfileScreen';
 import SettingsScreen from './screens/settings/SettingsScreen';
 import BlogDetailScreen from 'share/screens/blog_detail/BlogDetailScreen';
 import AppText from 'share/components/app_text/AppText';
-import Unauthenticated from 'share/screens/Unauthenticated';
+import UnauthenticatedScreen from 'share/screens/unauthenticated/UnauthenticatedScreen';
 
 const ProfileStack = createNativeStackNavigator();
 
@@ -41,7 +41,7 @@ export default function ProfileNavigator() {
                 () => <IconButton size={18} onPress={() => props.navigation.navigate("SettingsScreen")} icon={({color}) => <Ionicons name="settings-outline" size={18} color={color} />} />}
               />)
             }}
-            component={Unauthenticated}
+            component={UnauthenticatedScreen}
           />
         )
         : (
