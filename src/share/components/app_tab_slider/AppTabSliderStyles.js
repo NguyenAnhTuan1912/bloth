@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
 
   slide: {
-    position: "absolute",
+    position: "relative",
     width: "100%",
     height: "100%",
     opacity: 0,
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   },
 
   slide_show: {
+    position: "absolute",
     opacity: 1,
     zIndex: 1
   }

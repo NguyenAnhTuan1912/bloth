@@ -2,16 +2,20 @@ import { View, ScrollView, FlatList, LayoutAnimation, Platform, UIManager } from
 import React from 'react'
 import { RouteProp, ParamListBase, NavigationProp } from '@react-navigation/native'
 
-import { useTheme } from 'react-native-paper'
+import { Button, IconButton, useTheme } from 'react-native-paper'
 
-import withState from 'share/hocs/withState'
+import { useBriefBlogs } from 'share/hooks/useBlogSlice'
+
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import AppText from 'share/components/app_text/AppText'
-import TypeScrollView from 'share/components/type_scroll_view/TypeScrollView'
-import BlogCardSkeleton from 'share/components/blog_card/BlogCardSkeleton'
+import BlogCard from 'share/components/blog_card/BlogCard'
+import Loading from 'share/components/loading/Loading'
 
 import styles from './HomeScreenStyles'
 import app_sp from 'styles/spacing'
+
+import { BLOG_CARD_FIELDS } from 'utilities/constants'
 
 /**
  * @typedef BlogListProps
@@ -41,27 +45,33 @@ export default function HomeScreen({
   navigation
 }) {
   const theme = useTheme();
-  const [blogType, setBlogType] = React.useState("all");
+  const { blogs, blogsDispatcher } = useBriefBlogs("newest");
+
+  React.useEffect(() => {
+    blogsDispatcher.fetchBriefBlogs(BLOG_CARD_FIELDS);
+  }, []);
+
+  // console.log("BLOG IN HOME: ", blogs);
+
   return (
     <ScrollView
       style={{ backgroundColor: theme.colors.background }}
-      stickyHeaderIndices={[2]}
     >
       <AppText font = 'h1' style= {[app_sp.mt_12, app_sp.ph_18]}>Reading is great and sharing is too. </AppText>
       <View style={{ height: 25 }}></View>
-      <TypeScrollView
-        types="all;recommended"
-        buttonStyle="underline"
-        callBack={setBlogType}
-        scrollStyle={{borderBottomColor: theme.colors.outline, borderBottomWidth: .5}}
-        containerStyle={[app_sp.ph_18, { backgroundColor: theme.colors.background }]}
-      ></TypeScrollView>
-      <View style={app_sp.ph_18}>
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
+      <View style={[app_sp.ph_18, {flexDirection: 'row', alignItems: "center", justifyContent: "space-between"}]}>
+        <AppText font="h3">Newest</AppText>
+        <AppText font="body2" toScreen={{screenName: "BlogsNavigator"}}>View more</AppText>
+      </View>
+      <View>
+        {
+          blogs ? (
+            blogs.data.map(blog => <BlogCard key={blog._id} {...blog} />)
+          ) :
+          (
+            <Loading />
+          )
+        }
       </View>
     </ScrollView>
   )

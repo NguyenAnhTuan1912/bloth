@@ -47,7 +47,6 @@ export function configureGetBlogsAsyncFunc(axiosInstance) {
    */
   return async function getBlogsAsync(requestOptions) {
     let url = blogBaseURL + "/get_multiple";
-    console.log("OPTIONS: ", requestOptions);
     return await axiosInstance.get(url, requestOptions);
   }
 }

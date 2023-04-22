@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-import { NavigationContainer, useTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
+import { useTheme } from 'react-native-paper';
 
 import HomeScreen from './screens/home/HomeScreen';
 import BlogDetailScreen from 'share/screens/blog_detail/BlogDetailScreen';
@@ -34,7 +34,7 @@ export default function HomeNavigator({
         contentStyle: { backgroundColor: theme.colors.background }
       }}
     >
-      <HomeStack.Screen 
+      <HomeStack.Screen
         name="HomeScreen"
         options={{ title: 'Home' }}
         component={HomeScreen}

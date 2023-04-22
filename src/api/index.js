@@ -9,7 +9,11 @@ import {
 // Các API khác ở đây
 // Lấy ra các config function để tạo function gọi API cho USER
 import {
-  configureSignInAsyncFunc
+  configureSignInAsyncFunc,
+  configureSignUpAsyncFunc,
+  configureUpdatePasswordAsyncFunc,
+  configureForgotPasswordAsyncFunc,
+  configureAuthorizeAsyncFunc
 } from './userAPI'
 
 // Config xong rồi export luôn.
@@ -20,3 +24,7 @@ export const createBlogAsync = configureCreateBlogAsyncFunc(axiosInstance);
 export const deleteBlogAsync = configureDeleteBlogAsyncFunc(axiosInstance);
 
 export const signInAsync = configureSignInAsyncFunc(axiosInstance);
+export const signUpAsync = configureSignUpAsyncFunc(axiosInstance);
+export const updatePasswordAsync = configureUpdatePasswordAsyncFunc(axiosInstance);
+export const forgotPasswordAsync = configureForgotPasswordAsyncFunc(axiosInstance);
+export const authorizeAsync = configureAuthorizeAsyncFunc(axiosInstance);

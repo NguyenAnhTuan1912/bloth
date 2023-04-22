@@ -3,21 +3,26 @@ import React from 'react'
 import {  Avatar, IconButton, MD3Colors, Button, useTheme } from 'react-native-paper'
 
 import FunctionsUtility from 'utilities/functions'
+import { getBlogAsync } from 'api'
+import DateTimeUtility from 'utilities/datetime'
+
+import { useNavigation } from '@react-navigation/native'
+
+import { useBlogDetails } from 'share/hooks/useBlogSlice'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import AppText from 'share/components/app_text/AppText'
 import BlogCard from 'share/components/blog_card/BlogCard'
 import BlogCardSkeleton from 'share/components/blog_card/BlogCardSkeleton'
-import MarkFormat from 'share/components/mark_format/MarkFormat'
+import { MarkFormat } from 'libs/mark-format/react-native'
+import Loading from 'share/components/loading/Loading'
 
 import styles from './BlogDetailScreenStyles'
 import app_sp from 'styles/spacing'
 
-import { NavigationProps } from 'share/types/index.d'
-import DateTimeUtility from 'utilities/datetime'
+import { NavigationProps, BlogCardProps } from 'share/types/index.d'
 
-import { BlogCardDataCollection } from 'data/BlogCardData'
 
 const text = `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
 
@@ -35,19 +40,31 @@ export default function BlogDetailScreen({
   navigation
 }) {
   const theme = useTheme();
-  /**
-   * @type {[Array<BlogCardProps>, React.Dispatch<React.SetStateAction<BlogCardProps[]>>]}
-   */
-  const [blogCards, setBlogCards] = React.useState([]);
-
+  const [blog, setBlog] = React.useState(undefined);
+  
   React.useEffect(() => {
-    FunctionsUtility
-    .asyncTask(2000)
-    .then(message => {
-      setBlogCards(BlogCardDataCollection.filter(data => data.authorName === "Nguyễn Anh Tuấn"))
-    })
-  }, [])
+    let options = {
+      params: {
+        id: route.params.id
+      }
+    }
+    getBlogAsync(options)
+    .then(res => {
+      setBlog(res.data);
+      navigation.setOptions({ title: res.data.title })
+    });
+  }, [route.params.id]);
+  
+  if(!blog) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Loading />
+      </View>
+    )
+  }
 
+  const authorFullName = blog.author?.lastName + " " + blog.author?.firstName;
+  
   return (
     <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       {/* Blog detail header */}
@@ -58,7 +75,7 @@ export default function BlogDetailScreen({
         ...app_sp.mb_12
       }}>
         <AppText fontFamily="SourceSerifPro" font="h1" weight="lighter" color={theme.colors.onBackground}>
-          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout
+          {blog.title}
         </AppText>
 
         <View style={[styles.bd_row, app_sp.mt_12]}>
@@ -77,7 +94,9 @@ export default function BlogDetailScreen({
                 />
               )
             }
-            <AppText font="body3" style={app_sp.ms_6} color={theme.colors.onBackground}>Nguyễn Anh Tuấn</AppText>
+            <AppText font="body3" style={app_sp.ms_6} color={theme.colors.onBackground}>
+              {authorFullName}
+            </AppText>
           </View>
 
           <AppText font="body3" color={theme.colors.onBackground}>{DateTimeUtility.getShortDateString(1675302068000)} - {DateTimeUtility.toMinute(600)} min read.</AppText>
@@ -86,7 +105,7 @@ export default function BlogDetailScreen({
 
       {/* Blog detail content */}
       <View>
-        <MarkFormat text={text} />
+        <MarkFormat text={blog.content} />
       </View>
 
       {/* Other information */}
@@ -107,12 +126,12 @@ export default function BlogDetailScreen({
           }}
         >
           <AppText fontStyle="italic" style={{textAlign: 'justify'}} color={theme.colors.onBackground}>
-            Xin chào, mình là Tuấn, hiện tại mình dang là Software Engineer của Google, mình mở ra Blog này để chia sẻ cho các bạn mới kiến thức về ngành xây dựng và phát triển phần mềm
+            {blog.author?.bio}
           </AppText>
         </View>
 
         <AppText color={theme.colors.onBackground} style={{textAlign: 'right', ...app_sp.mt_12}}>View more about</AppText>
-        <AppText font="h5" color={theme.colors.primary} style={{textAlign: 'right'}}>Nguyễn Anh Tuấn</AppText>
+        <AppText font="h5" color={theme.colors.primary} style={{textAlign: 'right'}}>{authorFullName}</AppText>
       </View>
 
       {/* Related blogs */}
@@ -129,21 +148,9 @@ export default function BlogDetailScreen({
         </View>
 
         <View>
-          {
-            blogCards.length === 0
-            ? (
-              <>
-                <BlogCardSkeleton />
-                <BlogCardSkeleton />
-                <BlogCardSkeleton />
-              </>
-            )
-            : (
-              blogCards.map(blogCard => (
-                <BlogCard {...blogCard} key={blogCard.id} />
-              ))
-            )
-          }
+          <BlogCardSkeleton />
+          <BlogCardSkeleton />
+          <BlogCardSkeleton />
         </View>
       </View>
 

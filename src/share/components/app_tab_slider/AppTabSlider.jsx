@@ -109,15 +109,13 @@ const AppTabSlider = ({
     <View
       style={styles.slider_container}
     >
-      {
-        hasFirstSlideHeight && <TypeScrollView
-          types={listSlideName}
-          callBack={(type, typeIndex) => { handlePressTabSlider(typeIndex) }}
-          buttonStyle="underline"
-          lineIndexTranslateXStart={lineIndexTranslateXStart}
-          style={{position: "relative", zIndex: 2}}
-        />
-      }
+      <TypeScrollView
+        types={listSlideName}
+        callBack={(type, typeIndex) => { handlePressTabSlider(typeIndex) }}
+        buttonStyle="underline"
+        lineIndexTranslateXStart={lineIndexTranslateXStart}
+        style={{position: "relative", zIndex: 2}}
+      />
       <View
         style={styles.slide_container}
       >
@@ -131,33 +129,16 @@ const AppTabSlider = ({
           }, isSliderContainerScrollable ? { height: renderedSlidesInfo.current.renderedSlidesHeight[currentSlideIndex] } : { flex: 1 }]}
         >
           {
-            hasFirstSlideHeight ?
             renderedSlidesInfo.current.renderedSlides.map((renderedChild, index) => {
               return (
                 <Slide
                   key={listSlideName[index]}
                   isOnTop={currentSlideIndex === index}
-                  onLayout={e => {
-                    const { height } = e.nativeEvent.layout;
-                    renderedSlidesInfo.current.renderedSlidesHeight[index] = height;
-                  }}
                 >
                   {renderedChild}
                 </Slide>
               )
             })
-            : (
-              <Slide
-                isOnTop={currentSlideIndex}
-                onLayout={e => {
-                  const { height } = e.nativeEvent.layout;
-                  renderedSlidesInfo.current.renderedSlidesHeight.push(height);
-                  setHasFirstSlideHeight(true);
-                }}
-              >
-                {renderedSlidesInfo.current.renderedSlides[0]}
-              </Slide>
-            )
           }
         </Animated.View>
       </View>

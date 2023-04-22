@@ -7,6 +7,8 @@ import React from 'react'
  */
 
 /**
+ * __HOC__
+ * 
  * HOC này dùng cho các component muốn dùng React.useState().
  * @param {(data: any[], setData: React.Dispatch<React.SetStateAction<any[]>>) => JSX.Element} Component Props của component.
  * @returns 
