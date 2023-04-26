@@ -5,10 +5,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTheme } from 'react-native-paper';
 
+import { Button } from 'react-native-paper';
+
 import AppHeader from 'share/components/app_header/AppHeader';
 import BlogsScreen from './screens/blogs/BlogsScreen';
 import BlogDetailScreen from 'share/screens/blog_detail/BlogDetailScreen';
-import { Button } from 'react-native-paper';
+import BlogTypesChoice from 'share/screens/blog_types_choice/BlogTypesChoice';
 
 const BlogsStack = createNativeStackNavigator();
 
@@ -38,6 +40,13 @@ export default function BlogsNavigator() {
         name='BlogDetailScreen'
         options={{ title: 'Blog Detail' }}
         component={BlogDetailScreen}
+      />
+
+      {/* Blog detail screen */}
+      <BlogsStack.Screen
+        name='BlogTypesChoice'
+        options={{ title: 'Interested Types' }}
+        component={BlogTypesChoice}
       />
     </BlogsStack.Navigator>
   )

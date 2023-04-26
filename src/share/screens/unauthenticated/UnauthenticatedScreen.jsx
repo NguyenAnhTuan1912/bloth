@@ -10,7 +10,7 @@ import AppText from 'share/components/app_text/AppText'
 
 const UnauthenticatedScreen = () => {
   const theme = useTheme();
-  const { dispatchUserRoleUpdate } = useRole();
+  const { userRoleDispatcher } = useRole();
 
   return (
     <View
@@ -23,7 +23,7 @@ const UnauthenticatedScreen = () => {
     >
       <AppText>You're not sign in. Please sign in to continute!</AppText>
       <Button
-        onPress={() => dispatchUserRoleUpdate("")}
+        onPress={() => userRoleDispatcher.updateUserRole("")}
       >
         Sign in
       </Button>
