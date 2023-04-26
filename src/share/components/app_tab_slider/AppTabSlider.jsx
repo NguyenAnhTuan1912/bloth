@@ -51,7 +51,6 @@ const AppTabSlider = ({
 
   const theme = useTheme();
 
-  const [hasFirstSlideHeight, setHasFirstSlideHeight] = React.useState(false);
   const [currentSlideIndex, setSlideIndex] = React.useState(0);
   const sliderInfoRef = React.useRef({
     prevSlideIndex: 0,
@@ -121,12 +120,13 @@ const AppTabSlider = ({
       >
         <Animated.View
           style={[{
+            flex: 1,
             position: "relative",
             transform: [
               { translateX: translateAnim }
             ],
             opacity: opacityAnim
-          }, isSliderContainerScrollable ? { height: renderedSlidesInfo.current.renderedSlidesHeight[currentSlideIndex] } : { flex: 1 }]}
+          }]}
         >
           {
             renderedSlidesInfo.current.renderedSlides.map((renderedChild, index) => {

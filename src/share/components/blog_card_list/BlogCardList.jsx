@@ -72,7 +72,7 @@ const BlogCardList = ({
             renderItem={({ item }) => (
               <BlogCard {...item} />
             )}
-            keyExtractor={item => item._id}
+            keyExtractor={item => item._id + typeOfBlog}
             onEndReached={handleEndReach}
             onMomentumScrollEnd={handleBlogCardListScroll}
           />

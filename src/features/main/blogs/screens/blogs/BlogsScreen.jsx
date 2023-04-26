@@ -21,6 +21,7 @@ import styles from './BlogsScreenStyles'
 import AppTabSlider from 'share/components/app_tab_slider/AppTabSlider'
 
 import { NavigationProps, BlogCardProps } from 'share/types/index.d'
+import app_sp from 'styles/spacing'
 
 /**
  * Đây là screen Sign in
@@ -39,13 +40,9 @@ export default function BlogsScreen() {
           name: "all",
           RenderComponent: () => <BlogCardList typeOfBlog="all" />
         },
-        {
-          name: "recommended",
-          RenderComponent: () => <BlogCardList typeOfBlog="recommended" />
-        },
       ])
     } else {
-      let actualUserBlogType = ["all", ...user.interestedTypeOfBlogs]
+      let actualUserBlogType = ["all", "recommended", ...user.interestedTypeOfBlogs]
       return actualUserBlogType.map(insterestedType => (
         {
           name: insterestedType,
@@ -57,22 +54,21 @@ export default function BlogsScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      { 
+        user && user.interestedTypeOfBlogs.length === 0 && (
+        <View style={[{flexDirection: 'row', justifyContent: 'space-between'}, app_sp.p_18]}>
+          <AppText>Bạn chưa có thể loại blog yêu thích</AppText>
+          <AppText toScreen={{screenName: "BlogTypesChoice"}} color={theme.colors.primary}>Thêm</AppText>
+        </View>)
+      }
       {
-        BlogSlides.length === 0
-        ? (
-          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <AppText style={{textAlign: 'center'}}>You haven't interested in any blogs.</AppText>
-          </View>
-        )
-        : (
-          <AppTabSlider>
-            {
-              BlogSlides.map(BlogSlide => (
-                <AppTabSlider.Child name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
-              ))
-            }
-          </AppTabSlider>
-        )
+        <AppTabSlider>
+          {
+            BlogSlides.map(BlogSlide => (
+              <AppTabSlider.Child name={BlogSlide.name} key={BlogSlide.name} component={() => <BlogSlide.RenderComponent />} />
+            ))
+          }
+        </AppTabSlider>
       }
     </View>
   )
